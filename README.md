@@ -1,75 +1,82 @@
 # Чеджу · 13–20 мая 2026
 
-Личный одностраничный гайд для поездки на остров Чеджу.
-
-## Что внутри
-
-- **`index.html`** — весь сайт в одном файле. Никаких зависимостей кроме Google Fonts (Fraunces + DM Sans).
-- Часы MSK / KST в реальном времени
-- Подсветка текущего дня поездки
-- Чек-лист действий с сохранением в `localStorage`
-- Печатная вёрстка (`@media print`) — можно распечатать как pdf
-
-## Как открыть локально
-
-```bash
-# Просто открыть в браузере
-open index.html      # macOS
-xdg-open index.html  # Linux
-start index.html     # Windows
-```
-
-Или поднять простой dev-сервер:
-
-```bash
-python3 -m http.server 8080
-# открыть http://localhost:8080
-```
-
-## Как залить на GitHub и захостить через GitHub Pages
-
-```bash
-# 1. На github.com создаешь новый репозиторий (например, "jeju-trip")
-# 2. В этой папке выполняешь:
-
-git remote add origin https://github.com/USERNAME/jeju-trip.git
-git branch -M main
-git push -u origin main
-
-# 3. В Settings → Pages выбираешь:
-#    Source: Deploy from a branch
-#    Branch: main / (root)
-#    Save
-
-# 4. Через 1-2 минуты сайт будет доступен по адресу:
-#    https://USERNAME.github.io/jeju-trip/
-```
-
-## Альтернативы для деплоя
-
-- **Vercel** — drag-and-drop эту папку на vercel.com (5 секунд, кастомный домен)
-- **Netlify** — drag-and-drop на app.netlify.com/drop
-- **Cloudflare Pages** — подключить репозиторий с GitHub
+Личный сайт-гайд для поездки на остров Чеджу. Многостраничный, статичный, без зависимостей.
 
 ## Структура
 
 ```
 jeju-trip/
-├── index.html      # всё здесь
-├── README.md
-└── .gitignore
+├── index.html          # Главная — тайл-сетка дней + жильё + логистика + чек-лист
+├── day-1.html ... day-8.html   # Детальная страница каждого дня
+├── restaurants.html    # 18 курируемых ресторанов с фильтрами
+├── guide.html          # Apps · фразы · деньги · этикет · экстренные · фото · сувениры
+├── style.css           # Общий дизайн-токен и компоненты
+├── app.js              # Часы · день-маршрут · scroll-progress · чек-лист · фильтры
+└── README.md
 ```
 
-## Что можно править
+## Что внутри
 
-- Контент дней — секции `<article class="day">` в HTML
-- Цветовая палитра — CSS-переменные в `:root`
-- Чек-лист — список `<ul class="checklist">`
+### Главная (index.html)
+- Тайл-сетка из 8 дней. Тыкаешь день — открывается детальная страница.
+- Featured-тайлы (day 3 Hallasan, day 4 рассвет, day 5 запад) — увеличенные.
+- Часы MSK / KST в реальном времени, рабочее окно.
+- Where to stay, Логистика (связь · транспорт · деньги · погода), 10 пунктов чек-листа с сохранением в localStorage.
+
+### День (day-N.html)
+- Полный таймлайн с точками + Maps.
+- **«Маршрут дня»** — одна кнопка, открывает Google Maps directions со всеми точками дня как waypoints.
+- Каждая точка тоже открывает directions (навигация от current location).
+- Prev/Next-навигация между днями, breadcrumb «← Все дни».
+
+### Рестораны (restaurants.html)
+- 18 мест в 5 группах: иконы Чеджу · морепродукты · кафе · спецужин · план Б.
+- Фильтры: всё / иконы / морепродукты / кафе / рынки / спецужин / дождь.
+- Для каждого: район, корейское название, сигнатурное блюдо, почему стоит, тип, цена, ссылка на поиск в Maps.
+
+### Гид (guide.html)
+- **Приложения** — Naver Map, Kakao T, Papago, KakaoMap, KakaoTalk, Visit Jeju, Klook, Airalo
+- **Деньги** — курс, карты, кэш, T-money, no tipping
+- **Корейские фразы** — базовое · ресторан · такси · экстренное, с кнопкой «Копировать» (kr → буфер)
+- **Этикет** — обувь, обращение, soju, чаевые, фото haenyeo, очереди
+- **Экстренные номера** — 119 / 112 / **1330** (Korea Tourist Helpline 24/7 на русском)
+- **Госпитали** Сеогвипо + Jeju City
+- **Погода · план Б** на случай дождя в дни 3 / 4 / 5
+- **Фото-локации** с расчётом времени
+- **Сувениры** — hallabong, O'Sulloc, dolharubang, omija
+- **Таймлайн до вылета** — за 4 нед / 2 нед / 1 нед / 1 день
+
+## Как открыть локально
+
+```bash
+# Простой dev-сервер
+python3 -m http.server 8080
+# открыть http://localhost:8080
+```
+
+Или просто открой `index.html` в браузере.
+
+## Деплой через GitHub Pages
+
+Текущий деплой: <https://aksenovyuri2.github.io/jeju-trip/>
+
+Pages источник — `main` / root. Любой push в `main` автоматически пересобирает сайт.
 
 ## Локальное хранение
 
-Чек-боксы сохраняются в браузере под ключом `jeju-trip-checks-v1`. Очистить:
+Чек-лист сохраняется под ключом `jeju-trip-checks-v1`. Очистить:
 
 ```js
 localStorage.removeItem('jeju-trip-checks-v1');
 ```
+
+## Что можно править
+
+- **Контент дня** — открой `day-N.html` и поправь `<article class="day">`. JS пересоберёт маршрут дня сам.
+- **Рестораны** — `restaurants.html`, секция `.rest-group` с карточками `.rest-card`.
+- **Цветовая палитра** — CSS-переменные в начале `style.css` (`:root`).
+- **Фразы** — `guide.html` → `.phrase-list`.
+
+## Уважение к prefers-reduced-motion
+
+Все анимации (reveal-on-scroll, hover-lift, hero-blob, blinking dot) выключаются при включённом «уменьшенном движении» в системе.

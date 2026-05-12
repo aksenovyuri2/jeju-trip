@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1C3D5A">
+<title>Рестораны Чеджу · гастрономический подбор</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scroll-progress-bar"></div></div>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="brand" href="index.html">Чеджу 13–20.05</a>
+    <a class="navlink" href="index.html">Дни</a>
+    <a class="navlink" href="restaurants.html">Рестораны</a>
+    <a class="navlink" href="guide.html">Гид</a>
+    <a class="navlink" href="index.html#stay">Жильё</a>
+    <a class="navlink" href="index.html#checklist">Чек-лист</a>
+  </div>
+</nav>
+
+<main class="wrap-wide">
+
+  <header class="rest-hero">
+    <p class="eyebrow">Гастрономический подбор · в любой день</p>
+    <h1 class="display"><span class="word">Что есть</span> <span class="word it">на острове</span></h1>
+    <p style="font-size: 1.1rem; color: var(--ink-soft); max-width: 640px; margin-top: 24px; line-height: 1.5;">
+      Базовый принцип: <strong>ходить туда, где едят местные</strong>. Чеджу — про чёрную свинину, рыбу-саблю и абалоне. Плюс островная кафе-культура с архитектурой Tadao Ando и видом на бирюзу. Тапни «Maps» — откроется поиск места в Google Maps, оттуда стартанёшь навигацию.
+    </p>
+  </header>
+
+  <div class="rest-filter" role="toolbar" aria-label="Фильтр по типу">
+    <button class="active" data-filter="all">Всё</button>
+    <button data-filter="iconic">Иконы Чеджу</button>
+    <button data-filter="seafood">Морепродукты</button>
+    <button data-filter="cafe">Кафе</button>
+    <button data-filter="market">Рынки</button>
+    <button data-filter="luxe">Спецужин</button>
+    <button data-filter="rainy">План Б · дождь</button>
+  </div>
+
+  <div class="callout">
+    <strong>Корея = no tipping.</strong> Чаевые не приняты. Ужин на двоих в ресторане чёрной свинины: ~₩60–90k. Galchi-gui: ~₩40–70k порция. Кафе с видом: десерт ₩9–15k.
+  </div>
+
+  <!-- ========= GROUP 1: ICONIC ========= -->
+  <section class="rest-group" id="iconic">
+    <div class="rest-group-head">
+      <span class="num">01</span>
+      <h2>Иконы чеджуской кухни</h2>
+      <span class="count">5 мест</span>
+    </div>
+    <div class="rest-grid">
+
+      <article class="rest-card" data-tags="iconic seafood">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо · Olle Maeil</span>
+        </div>
+        <h3>Solmuni · 솔무니</h3>
+        <div class="rest-kr">galchi-gui · жареная рыба-сабля</div>
+        <div class="rest-chips">
+          <span class="chip must">Must</span>
+          <span class="chip">Galchi</span>
+          <span class="chip">Ужин</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> метровая серебристая cutlassfish целиком на гриле + рисовые миски + 10 видов banchan.</p>
+        <p class="rest-why">Чеджуская classic, которую советуют все местные тур-гиды. Дороже уличной палатки, но рыба идеальная и сервис понятный.</p>
+        <div class="rest-tip">
+          <strong>Подсказка:</strong> приходи в 18:00, иначе очередь на час. Закажи one whole galchi на двоих + порцию kimchi-jjigae.
+        </div>
+        <div class="rest-foot">
+          <span class="rest-meta">₩40–70k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Solmuni+Galchi+Seogwipo" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="iconic seafood">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо · Olle Maeil</span>
+        </div>
+        <h3>Geommun Galchi · 검문갈치</h3>
+        <div class="rest-kr">альтернатива Solmuni на ту же рыбу</div>
+        <div class="rest-chips">
+          <span class="chip">Galchi</span>
+          <span class="chip">Ужин</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> Galchi-gui (жареная) и galchi-jorim (тушёная в остром соусе с редькой).</p>
+        <p class="rest-why">Если в Solmuni очередь — иди сюда. Местный галчи без английского меню, но pointing-system работает идеально.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩35–60k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Geommun+Galchi+Seogwipo" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="iconic">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо · Heukdwaeji Geori (Black Pork Street)</span>
+        </div>
+        <h3>Don's Don · 돈사돈</h3>
+        <div class="rest-kr">heuk dwaeji · чёрная свинина на углях</div>
+        <div class="rest-chips">
+          <span class="chip must">Must</span>
+          <span class="chip">BBQ</span>
+          <span class="chip">Ужин</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> жирная свинина островной породы — шейка + грудинка, на углях прямо у стола. Соль + кунжутное масло + чесночные стрелки.</p>
+        <p class="rest-why">Один из самых известных ресторанов на «улице чёрной свинины» — ряд из десятка одинаковых заведений, но к этому очередь дольше всех.</p>
+        <div class="rest-tip">
+          <strong>Подсказка:</strong> закажи <em>moksal + samgyeopsal</em> на двоих + <em>doenjang-jjigae</em>. Не запивай soju больше 1 шота — поезд в 01:00 KST никто не отменял.
+        </div>
+        <div class="rest-foot">
+          <span class="rest-meta">₩40–60k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Black+Pork+Street+Seogwipo+Don+Sa+Don" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="iconic seafood">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Udo (на день 4)</span>
+        </div>
+        <h3>Hareubang Sikdang · 하르방식당</h3>
+        <div class="rest-kr">jeonbok-juk + bibimbap с абалоне</div>
+        <div class="rest-chips">
+          <span class="chip must">Must</span>
+          <span class="chip">Абалоне</span>
+          <span class="chip">Обед</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> jeonbok-juk (кремовая каша из риса с морским ушком) + jeonbok-bibimbap (рис в горячем горшке с абалоне).</p>
+        <p class="rest-why">Udo — столица абалоне Кореи. Здесь его собирают <em>haenyeo</em> (женщины-ныряльщицы), и съесть его на самом острове — обязательная история.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩18–28k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Udo+abalone+restaurant+jeonbok+juk" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="iconic">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо · Olle Maeil (рынок)</span>
+        </div>
+        <h3>Olle Maeil Market · 올레시장</h3>
+        <div class="rest-kr">galchi-jorim, hoeddeok, mandarin juice</div>
+        <div class="rest-chips">
+          <span class="chip must">Must</span>
+          <span class="chip">Стрит-фуд</span>
+          <span class="chip">Обед</span>
+        </div>
+        <p class="rest-sig"><strong>Что взять:</strong> galchi-jorim в палатках с дымящимися кастрюлями · hoeddeok (пончики с орехами, ₩1500) · hallabong-juice свежевыжатый.</p>
+        <p class="rest-why">Центральный рынок Сеогвипо в 5 мин от отеля. Местные едят тут на обед, цены минимум в 2 раза ниже ресторанных. Идеально для лёгких обедов перед рабочей сменой.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩8–18k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Seogwipo+Olle+Maeil+Market" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========= GROUP 2: SEAFOOD & DEEP CUTS ========= -->
+  <section class="rest-group" id="seafood">
+    <div class="rest-group-head">
+      <span class="num">02</span>
+      <h2>Морепродукты · глубже туристов</h2>
+      <span class="count">3 места</span>
+    </div>
+    <div class="rest-grid">
+
+      <article class="rest-card" data-tags="seafood">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо · Sumokwon area</span>
+        </div>
+        <h3>Sumokwon Maritime · 수목원 마리타임</h3>
+        <div class="rest-kr">hwe — сашими по-корейски</div>
+        <div class="rest-chips">
+          <span class="chip">Sashimi</span>
+          <span class="chip">Spendy</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> моллюски + <em>hwe</em> (свежевыловленная рыба сырой) + bowl с горячим рыбным бульоном. Сет на двоих ₩70–120k.</p>
+        <p class="rest-why">Хвэ — корейская версия сашими, но толще и плотнее, подаётся с <em>chogochujang</em> (сладкий красный соус). Чеджуские повара славятся.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩60–110k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Seogwipo+hwe+sashimi+restaurant" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="seafood iconic">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо</span>
+        </div>
+        <h3>Bonggopro Mom-guk · 봉고프 몸국</h3>
+        <div class="rest-kr">mom-guk · суп с водорослями и свининой</div>
+        <div class="rest-chips">
+          <span class="chip">Местное</span>
+          <span class="chip">Обед</span>
+          <span class="chip">Hangover-fix</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> прозрачный суп с <em>мом</em> (бурые водоросли) и свининой — традиционный чеджуский comfort food.</p>
+        <p class="rest-why">Туристы это блюдо не заказывают — слишком «местное». Корейцы едят с похмелья и в дождливые дни. Просто и идеально перед рабочим вечером.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩10–15k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Seogwipo+mom+guk+restaurant" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="seafood">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Jeju City · Dongmun Market</span>
+        </div>
+        <h3>Dongmun Traditional Market · 동문시장</h3>
+        <div class="rest-kr">всё, что плавало пять часов назад</div>
+        <div class="rest-chips">
+          <span class="chip">Рынок</span>
+          <span class="chip">Стрит-фуд</span>
+        </div>
+        <p class="rest-sig"><strong>Что взять:</strong> haemul-pajeon (морской блин), takoyaki, abalone porridge у стеночных едальных.</p>
+        <p class="rest-why">Главный рынок Jeju City — выходит если едешь в восточный/западный тур через город. На юге Olle Maeil ближе, но Dongmun масштабнее и атмосфернее.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩10–20k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Dongmun+Traditional+Market+Jeju" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========= GROUP 3: CAFES (Jeju is famous for this) ========= -->
+  <section class="rest-group" id="cafe">
+    <div class="rest-group-head">
+      <span class="num">03</span>
+      <h2>Кафе · отдельный жанр острова</h2>
+      <span class="count">6 мест</span>
+    </div>
+    <div class="rest-grid">
+
+      <article class="rest-card" data-tags="cafe luxe">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Aewol (запад) · день 5</span>
+        </div>
+        <h3>Bonte Museum Café · 본태박물관</h3>
+        <div class="rest-kr">архитектура Tadao Ando + чайные сеты</div>
+        <div class="rest-chips">
+          <span class="chip luxe">Архитектура</span>
+          <span class="chip">Кафе</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> бетон, вода, свет. Зелёный чай тщательно завариваемый + чеджуский tangerine cake.</p>
+        <p class="rest-why">Не просто кафе — комплекс из музея традиционного корейского искусства и одной из главных архитектурных построек острова. Tadao Ando использует свет, бетон и воду как материалы.</p>
+        <div class="rest-tip">
+          <strong>Подсказка:</strong> заложи 1.5 часа. Билет в музей + кафе. Лучше до 16:00 — свет идеальный.
+        </div>
+        <div class="rest-foot">
+          <span class="rest-meta">₩20–25k вход + ₩10k кофе</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Bonte+Museum+Jeju" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="cafe">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Aewol Cafe Street (запад) · день 5</span>
+        </div>
+        <h3>Monsant · 몽상</h3>
+        <div class="rest-kr">стеклянный куб над морем</div>
+        <div class="rest-chips">
+          <span class="chip">Виды</span>
+          <span class="chip">Кафе</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> двухэтажное стеклянное здание прямо у скал. Affogato + ягодные смузи + минималистичный интерьер.</p>
+        <p class="rest-why">Один из самых фотографируемых cafe-spot на острове. Виды на бирюзовое море с второго этажа — open-air. История: владел Big Bang G-Dragon, был продан, но интерьер сохранился.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩8–14k</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Monsant+Cafe+Aewol+Jeju" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="cafe">
+        <div class="rest-eyebrow">
+          <span class="rest-area">O'Sulloc Tea Field (запад) · день 5</span>
+        </div>
+        <h3>O'Sulloc Tea Museum & Tea Stone</h3>
+        <div class="rest-kr">оригинальный matcha-латте острова</div>
+        <div class="rest-chips">
+          <span class="chip must">Must</span>
+          <span class="chip">Чай</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> чайные поля + музей чая + cafe с зелёным чаем латте и tangerine soft-serve. Tea Stone — это tasting room с дегустацией 5 видов чеджуских чаёв.</p>
+        <p class="rest-why">Зелёный чай Jeju — лучший в Корее, выращивается у подножия Hallasan. Это не туристическая ловушка, а реальный музей бренда AmorePacific.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩6–12k</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=O%27sulloc+Tea+Museum+Jeju" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="cafe">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Aewol (запад) · день 5</span>
+        </div>
+        <h3>Cafe Del Mungo · 카페 델 문도</h3>
+        <div class="rest-kr">кафе-парк со стеклянной оранжереей</div>
+        <div class="rest-chips">
+          <span class="chip">Виды</span>
+          <span class="chip">Кафе</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> огромная стеклянная оранжерея с тропическими растениями + open-air терраса с океанским панорамным видом.</p>
+        <p class="rest-why">Один из крупнейших и самых instagrammable кафе Чеджу. Это не просто кафе — это парк площадью 20 000 м². Подходит для длинной утренней работы (Wi-Fi есть).</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩10–18k</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Del+Moondo+cafe+Jeju" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="cafe">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Aewol Coastal Road</span>
+        </div>
+        <h3>Anthracite Coffee · 앤트러사이트</h3>
+        <div class="rest-kr">specialty coffee · обжарка ремесленная</div>
+        <div class="rest-chips">
+          <span class="chip">Specialty</span>
+          <span class="chip">Кафе</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> single-origin pour-over из своей обжарки + ferrari espresso + freshly-baked миндальный круассан.</p>
+        <p class="rest-why">Главный specialty-roaster Сеула открыл outpost на Aewol Beach. Это редкая возможность пить серьёзный кофе на острове, где большинство кафе про «вид и эстетику», а не качество зерна.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩7–11k</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Anthracite+Coffee+Jeju+Hannam" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="cafe rainy">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо</span>
+        </div>
+        <h3>Cafe Springsteen · 카페 스프링스틴</h3>
+        <div class="rest-kr">локальные кафе для рабочего дня</div>
+        <div class="rest-chips">
+          <span class="chip">Wi-Fi</span>
+          <span class="chip">Утро</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> hand-drip кофе, омлетные сэндвичи и тихая работа за ноутбуком до 12:00.</p>
+        <p class="rest-why">Если работа всё-таки догоняет утром — иди сюда. Хороший Wi-Fi, розетки, нет лишнего шума. Альтернатива — любое отделение <strong>Cafe Mamas</strong> или <strong>Starbucks Reserve Olle Maeil</strong>.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩6–10k</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Seogwipo+specialty+coffee+work+cafe" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========= GROUP 4: LUXE ========= -->
+  <section class="rest-group" id="luxe">
+    <div class="rest-group-head">
+      <span class="num">04</span>
+      <h2>Спецужин · если хочется wow</h2>
+      <span class="count">2 места</span>
+    </div>
+    <div class="rest-grid">
+
+      <article class="rest-card" data-tags="luxe iconic">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо · близко к отелю</span>
+        </div>
+        <h3>Joonsik · 준식 (Joonsik Korean Bistro)</h3>
+        <div class="rest-kr">современная чеджуская кухня · авторский сет</div>
+        <div class="rest-chips">
+          <span class="chip luxe">Spendy</span>
+          <span class="chip">Сет</span>
+          <span class="chip">Бронь</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> 7-courses chef's tasting с локальными продуктами — чёрная свинина, abalone, сезонные водоросли, hallabong-десерт.</p>
+        <p class="rest-why">Версия Чеджу для «omakase-вечера». Авторская кухня молодого корейского повара, который вернулся с обучения из Сеула. Не туристическое.</p>
+        <div class="rest-tip">
+          <strong>Бронь:</strong> через Naver или KakaoTalk минимум за 3 дня. Поиск: <em>«제주 준식 코스»</em>. Если не удаётся — Hyodonjip (хорош для последнего вечера).
+        </div>
+        <div class="rest-foot">
+          <span class="rest-meta">₩90–140k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Seogwipo+chef+tasting+menu+korean+bistro" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="luxe seafood">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Jeju City (если будешь там)</span>
+        </div>
+        <h3>Hidden Garden · 더플레이스</h3>
+        <div class="rest-kr">сезонный авторский менью</div>
+        <div class="rest-chips">
+          <span class="chip luxe">Spendy</span>
+          <span class="chip">Архитектура</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> degustation на 6–8 курсов в архитектурно-выверенном пространстве с садом. Меню меняется каждый месяц.</p>
+        <p class="rest-why">Если будет вечер в Jeju City или решение взять такси в один конец — это вариант для «один большой ужин за поездку».</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩120–180k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Jeju+City+chef+tasting+fine+dining" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========= GROUP 5: RAINY DAY ========= -->
+  <section class="rest-group" id="rainy">
+    <div class="rest-group-head">
+      <span class="num">05</span>
+      <h2>План Б · дождь / усталость / поздний вечер</h2>
+      <span class="count">2 места</span>
+    </div>
+    <div class="rest-grid">
+
+      <article class="rest-card" data-tags="rainy iconic">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо · в шаговой доступности</span>
+        </div>
+        <h3>Hyodonjip · 효돈집</h3>
+        <div class="rest-kr">домашняя корейская кухня · 24/7</div>
+        <div class="rest-chips">
+          <span class="chip">24/7</span>
+          <span class="chip">Простое</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> haejang-guk (суп от похмелья), bibimbap, kimchi-jjigae в любое время суток.</p>
+        <p class="rest-why">Открыт ночью — если рабочая смена кончится в 01:00 KST и захочется поесть. Не выпендривается, не туристическое, корейская семья на кухне.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩8–14k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Seogwipo+24+hour+korean+restaurant" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+      <article class="rest-card" data-tags="rainy cafe">
+        <div class="rest-eyebrow">
+          <span class="rest-area">Сеогвипо</span>
+        </div>
+        <h3>The Cliff · 더 클리프</h3>
+        <div class="rest-kr">современный resto-bar над морем</div>
+        <div class="rest-chips">
+          <span class="chip">Бар</span>
+          <span class="chip">Виды</span>
+        </div>
+        <p class="rest-sig"><strong>Сигна:</strong> ужин-в-баре формат — flights of local craft beer, fish & chips, octopus tapas. До полуночи.</p>
+        <p class="rest-why">Если хочется «не корейской» еды один вечер. Виды на побережье. Идёт перед или после смены.</p>
+        <div class="rest-foot">
+          <span class="rest-meta">₩30–50k / чел</span>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=The+Cliff+Jeju+Jungmun" target="_blank" rel="noopener">Maps</a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <div class="callout cool">
+    <strong>Хочу — этим вечером.</strong> Стратегия: если сегодня рабочий день — ужин <strong>Solmuni</strong> или <strong>Don's Don</strong> (10 мин пешком от отеля). Если выходной с длинной поездкой — ужин на запад <strong>Cafe del Mungo</strong> или <strong>Bonte</strong>. На «спецужин» забронируй <strong>Joonsik</strong> за 3 дня заранее.
+  </div>
+
+  <h3 style="margin-top: 48px; color: var(--volcano);">Семь визитных блюд</h3>
+  <p class="quiet">Чек-лист, чтобы не пропустить ничего важного.</p>
+  <div class="food-list">
+    <div class="food-item"><div class="food-num">01</div><div><h4>Heuk dwaeji · черная свинина</h4><p>Жирная свинина островной породы на углях. Black Pork Street.</p></div></div>
+    <div class="food-item"><div class="food-num">02</div><div><h4>Galchi-gui · жареный cutlassfish</h4><p>Метровая серебристая рыба целиком на гриле. Solmuni / Geommun Galchi.</p></div></div>
+    <div class="food-item"><div class="food-num">03</div><div><h4>Galchi-jorim · тушёный cutlassfish</h4><p>В остром соусе с редькой. На Olle Maeil в любой палатке.</p></div></div>
+    <div class="food-item"><div class="food-num">04</div><div><h4>Jeonbok-juk · каша с абалоне</h4><p>Кремовая рисовая каша с морским ушком. Идеально на Udo.</p></div></div>
+    <div class="food-item"><div class="food-num">05</div><div><h4>Mom-guk · суп с водорослями и свининой</h4><p>Прозрачный суп с мом (бурые водоросли). Местный, не туристический.</p></div></div>
+    <div class="food-item"><div class="food-num">06</div><div><h4>Hoeddeok · сладкие пончики</h4><p>Жареный пончик с коричневым сахаром и орехами. ₩1500 на Olle Maeil.</p></div></div>
+    <div class="food-item"><div class="food-num">07</div><div><h4>Tangerine soft-serve</h4><p>Мороженое из чеджуских мандаринов. O'Sulloc, Aewol-кафе.</p></div></div>
+  </div>
+
+  <footer>
+    <p class="display-italic">Ешь там, где едят местные.</p>
+    <p>Гастрономический подбор · Чеджу 2026</p>
+  </footer>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

@@ -8,814 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #F4EEE3;
-    --bg-card: #FBF7EE;
-    --bg-card-alt: #EEE5D2;
-    --ink: #1A1F26;
-    --ink-soft: #4A5159;
-    --ink-faint: #7A7268;
-    --rule: #D9CFB8;
-    --rule-soft: #E8DFC9;
-    --volcano: #1C3D5A;
-    --volcano-deep: #0E2438;
-    --tangerine: #D97640;
-    --tangerine-soft: #F0C9A8;
-    --moss: #5A6F4A;
-    --berry: #8B3A52;
-    --shadow: 0 1px 2px rgba(26, 31, 38, 0.04), 0 8px 24px rgba(26, 31, 38, 0.06);
-    --radius: 8px;
-    --radius-lg: 16px;
-  }
-
-  * { box-sizing: border-box; }
-
-  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 80px; }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 16px;
-    line-height: 1.55;
-    font-feature-settings: "ss01", "ss02", "kern";
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  ::selection { background: var(--tangerine); color: white; }
-
-  /* ============= TYPOGRAPHY ============= */
-  .display {
-    font-family: 'Fraunces', Georgia, serif;
-    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-  }
-  .display-italic {
-    font-family: 'Fraunces', Georgia, serif;
-    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
-    font-style: italic;
-    font-weight: 300;
-  }
-  h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; letter-spacing: -0.015em; }
-  h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin: 0; }
-  h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin: 0 0 0.5em; line-height: 1.1; }
-  h3 { font-size: 1.4rem; margin: 0 0 0.4em; line-height: 1.2; }
-  h4 { font-size: 1.1rem; margin: 0 0 0.3em; font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: 0.01em; }
-  p { margin: 0 0 1em; }
-  strong { font-weight: 700; color: var(--ink); }
-  a { color: var(--volcano); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; transition: text-decoration-color 0.2s; }
-  a:hover { text-decoration-color: var(--tangerine); }
-
-  .eyebrow {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-faint);
-  }
-
-  /* ============= LAYOUT ============= */
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
-  @media (min-width: 768px) { .wrap { padding: 0 40px; } }
-
-  /* ============= STICKY NAV ============= */
-  .topnav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(244, 238, 227, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--rule-soft);
-  }
-  .topnav-inner {
-    max-width: 760px; margin: 0 auto;
-    display: flex; align-items: center; gap: 16px;
-    padding: 12px 24px;
-    overflow-x: auto; scrollbar-width: none;
-  }
-  .topnav-inner::-webkit-scrollbar { display: none; }
-  .topnav .brand {
-    font-family: 'Fraunces', serif; font-weight: 500;
-    font-size: 0.95rem;
-    color: var(--volcano);
-    white-space: nowrap;
-    margin-right: 8px;
-  }
-  .topnav .brand::before {
-    content: ""; display: inline-block;
-    width: 6px; height: 6px;
-    background: var(--tangerine); border-radius: 50%;
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-  .topnav a.navlink {
-    font-size: 0.82rem;
-    color: var(--ink-soft);
-    text-decoration: none;
-    white-space: nowrap;
-    padding: 4px 0;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-  }
-  .topnav a.navlink:hover { color: var(--volcano); }
-
-  /* ============= HERO ============= */
-  .hero {
-    padding: 64px 0 48px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: ""; position: absolute;
-    top: 0; right: -100px; width: 380px; height: 380px;
-    background: radial-gradient(circle, var(--tangerine-soft) 0%, transparent 65%);
-    opacity: 0.5; pointer-events: none;
-    z-index: 0;
-  }
-  .hero-content { position: relative; z-index: 1; }
-  .hero .eyebrow { margin-bottom: 20px; }
-  .hero h1 { margin-bottom: 28px; }
-  .hero h1 .word { display: inline-block; }
-  .hero h1 .it { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1; font-style: italic; font-weight: 300; color: var(--volcano); }
-  .hero-meta {
-    display: flex; flex-wrap: wrap; gap: 24px 40px;
-    padding: 24px 0;
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    margin: 28px 0 0;
-  }
-  .hero-meta dt { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
-  .hero-meta dd { margin: 0; font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 400; color: var(--volcano); letter-spacing: -0.01em; }
-
-  /* ============= SECTION ============= */
-  section { padding: 56px 0; }
-  .section-head { margin-bottom: 36px; }
-  .section-head .num {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-variation-settings: 'opsz' 144, 'SOFT' 100;
-    font-size: 1.1rem;
-    color: var(--tangerine);
-    margin-right: 12px;
-    vertical-align: 4px;
-  }
-
-  /* ============= TZ CLOCK ============= */
-  .tz {
-    background: var(--volcano);
-    color: #F0E4CC;
-    border-radius: var(--radius-lg);
-    padding: 24px 28px;
-    margin: 32px 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    box-shadow: var(--shadow);
-  }
-  .tz-col .lbl {
-    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(240, 228, 204, 0.6);
-    margin-bottom: 8px;
-  }
-  .tz-col .city { font-family: 'Fraunces', serif; font-size: 1rem; opacity: 0.85; margin-bottom: 4px; }
-  .tz-col .time { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 400; letter-spacing: -0.02em; }
-  .tz-col .date { font-size: 0.85rem; opacity: 0.7; margin-top: 4px; }
-  .tz-divider {
-    position: relative;
-    text-align: center;
-    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(240, 228, 204, 0.5);
-    margin: 12px 0 -8px;
-    grid-column: 1 / -1;
-  }
-
-  .work-window {
-    background: var(--bg-card);
-    border: 1px solid var(--rule);
-    padding: 20px 24px;
-    border-radius: var(--radius);
-    margin: 20px 0;
-    font-size: 0.93rem;
-  }
-  .work-window .key { color: var(--tangerine); font-weight: 600; }
-
-  /* ============= DAY CARDS ============= */
-  .day {
-    background: var(--bg-card);
-    border-radius: var(--radius-lg);
-    padding: 28px 24px;
-    margin-bottom: 24px;
-    box-shadow: var(--shadow);
-    border: 1px solid transparent;
-    transition: border-color 0.2s, transform 0.2s;
-    scroll-margin-top: 72px;
-  }
-  @media (min-width: 768px) { .day { padding: 36px 40px; } }
-  .day.today {
-    border-color: var(--tangerine);
-    background: linear-gradient(180deg, #FBF7EE 0%, #FFF5E6 100%);
-  }
-  .day.today .day-header::after {
-    content: "сегодня";
-    display: inline-block;
-    margin-left: 12px;
-    background: var(--tangerine);
-    color: white;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 100px;
-    vertical-align: 6px;
-  }
-  .day.special { background: linear-gradient(180deg, #FBF7EE 0%, #F5EBD7 100%); }
-
-  .day-header {
-    display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px;
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 1px solid var(--rule-soft);
-  }
-  .day-date {
-    font-family: 'Fraunces', serif;
-    font-size: 2.2rem;
-    font-weight: 400;
-    letter-spacing: -0.02em;
-    color: var(--volcano);
-    line-height: 1;
-  }
-  .day-dow {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
-    font-size: 1.4rem;
-    color: var(--ink-soft);
-    font-weight: 300;
-  }
-  .day-tag {
-    margin-left: auto;
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 100px;
-    font-weight: 600;
-  }
-  .tag-work { background: var(--bg-card-alt); color: var(--ink-soft); }
-  .tag-free { background: var(--tangerine); color: white; }
-  .tag-travel { background: var(--moss); color: #F4EEE3; }
-
-  .day-title { font-size: 1.5rem; color: var(--volcano); margin: 16px 0 6px; line-height: 1.2; }
-  .day-subtitle { font-size: 0.95rem; color: var(--ink-soft); font-style: italic; margin-bottom: 20px; }
-
-  /* TIMELINE */
-  .timeline { list-style: none; padding: 0; margin: 16px 0 0; }
-  .timeline > li {
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: 16px;
-    padding: 14px 0;
-    border-top: 1px dashed var(--rule);
-  }
-  .timeline > li:first-child { border-top: 0; padding-top: 0; }
-  .t-time {
-    font-family: 'Fraunces', serif;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--tangerine);
-    letter-spacing: -0.01em;
-    padding-top: 2px;
-  }
-  .t-body { font-size: 0.95rem; }
-  .t-body .place {
-    font-weight: 600;
-    color: var(--ink);
-    margin-right: 4px;
-  }
-  .t-body .note {
-    color: var(--ink-soft);
-    font-size: 0.9rem;
-    margin-top: 4px;
-    line-height: 1.5;
-  }
-  .map-btn {
-    display: inline-flex; align-items: center; gap: 4px;
-    background: var(--volcano); color: #F0E4CC !important;
-    font-size: 0.72rem; letter-spacing: 0.05em;
-    padding: 3px 9px; border-radius: 100px;
-    text-decoration: none;
-    margin-left: 6px;
-    font-weight: 500;
-    vertical-align: 2px;
-    transition: background 0.2s;
-  }
-  .map-btn:hover { background: var(--volcano-deep); }
-  .map-btn svg { width: 9px; height: 9px; }
-
-  .day-note {
-    margin-top: 20px;
-    padding: 16px 18px;
-    background: var(--bg-card-alt);
-    border-left: 3px solid var(--tangerine);
-    border-radius: 4px;
-    font-size: 0.9rem;
-    color: var(--ink-soft);
-  }
-  .day-note strong { color: var(--berry); }
-
-  .work-block {
-    margin-top: 18px;
-    padding: 12px 16px;
-    background: var(--volcano);
-    color: #F0E4CC;
-    font-size: 0.85rem;
-    border-radius: var(--radius);
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .work-block .lbl { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; }
-  .work-block .val { font-family: 'Fraunces', serif; font-size: 1rem; }
-
-  /* ============= LOGISTICS CARDS ============= */
-  .grid-2 {
-    display: grid; gap: 20px;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 600px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
-
-  .info-card {
-    background: var(--bg-card);
-    padding: 24px;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--rule-soft);
-  }
-  .info-card h3 { color: var(--volcano); }
-  .info-card ul { padding-left: 18px; margin: 0; }
-  .info-card li { margin: 8px 0; }
-  .info-card .pill {
-    display: inline-block;
-    font-size: 0.72rem;
-    background: var(--bg-card-alt);
-    padding: 2px 9px;
-    border-radius: 100px;
-    margin-right: 6px;
-    color: var(--ink-soft);
-  }
-  .info-card .pill.tier { background: var(--tangerine-soft); color: var(--volcano-deep); font-weight: 600; }
-
-  /* FOOD */
-  .food-list { display: grid; gap: 14px; margin-top: 20px; }
-  .food-item {
-    display: grid; grid-template-columns: auto 1fr; gap: 16px;
-    padding: 14px 18px;
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    border: 1px solid var(--rule-soft);
-  }
-  .food-num {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
-    color: var(--tangerine);
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1;
-    padding-top: 4px;
-  }
-  .food-item h4 { margin-bottom: 4px; }
-  .food-item p { font-size: 0.88rem; color: var(--ink-soft); margin: 0; }
-
-  /* ============= CHECKLIST ============= */
-  .check-progress {
-    background: var(--bg-card);
-    padding: 18px 22px;
-    border-radius: var(--radius);
-    margin-bottom: 24px;
-    display: flex; align-items: center; gap: 16px;
-    border: 1px solid var(--rule-soft);
-  }
-  .check-progress .bar {
-    flex: 1;
-    height: 6px; background: var(--rule-soft);
-    border-radius: 100px; overflow: hidden;
-  }
-  .check-progress .bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--tangerine) 0%, var(--volcano) 100%);
-    border-radius: 100px;
-    transition: width 0.4s ease;
-    width: 0%;
-  }
-  .check-progress .count {
-    font-family: 'Fraunces', serif;
-    font-size: 1.1rem;
-    color: var(--volcano);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .checklist { list-style: none; padding: 0; margin: 0; }
-  .checklist li {
-    background: var(--bg-card);
-    border: 1px solid var(--rule-soft);
-    border-radius: var(--radius);
-    margin-bottom: 10px;
-    transition: all 0.2s;
-    overflow: hidden;
-  }
-  .checklist label {
-    display: grid; grid-template-columns: 24px 1fr; gap: 14px;
-    align-items: start;
-    padding: 16px 20px;
-    cursor: pointer;
-    font-size: 0.95rem;
-  }
-  .checklist input[type="checkbox"] {
-    appearance: none; -webkit-appearance: none;
-    width: 20px; height: 20px;
-    border: 2px solid var(--rule);
-    border-radius: 5px;
-    background: white;
-    cursor: pointer;
-    position: relative;
-    margin: 1px 0 0;
-    transition: all 0.15s;
-  }
-  .checklist input[type="checkbox"]:checked {
-    background: var(--volcano);
-    border-color: var(--volcano);
-  }
-  .checklist input[type="checkbox"]:checked::after {
-    content: "";
-    position: absolute;
-    left: 5px; top: 1px;
-    width: 5px; height: 10px;
-    border: solid #F0E4CC;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-  }
-  .checklist label:has(input:checked) {
-    text-decoration: line-through;
-    color: var(--ink-faint);
-  }
-  .checklist li:has(input:checked) {
-    background: var(--bg-card-alt);
-    opacity: 0.6;
-  }
-  .checklist .meta {
-    display: block; font-size: 0.8rem; color: var(--ink-faint);
-    margin-top: 4px;
-  }
-
-  /* ============= LINKS GRID ============= */
-  .links-grid { display: grid; gap: 12px; margin-top: 20px; grid-template-columns: 1fr; }
-  @media (min-width: 500px) { .links-grid { grid-template-columns: 1fr 1fr; } }
-  .link-card {
-    display: flex; flex-direction: column;
-    padding: 18px 20px;
-    background: var(--bg-card);
-    border: 1px solid var(--rule-soft);
-    border-radius: var(--radius);
-    text-decoration: none;
-    color: var(--ink);
-    transition: all 0.2s;
-  }
-  .link-card:hover { border-color: var(--volcano); transform: translateY(-2px); }
-  .link-card .title { font-weight: 700; color: var(--volcano); margin-bottom: 2px; font-size: 0.95rem; }
-  .link-card .sub { font-size: 0.8rem; color: var(--ink-faint); }
-
-  /* ============= FOOTER ============= */
-  footer {
-    padding: 60px 0 80px;
-    text-align: center;
-    border-top: 1px solid var(--rule);
-    margin-top: 40px;
-  }
-  footer p { font-size: 0.85rem; color: var(--ink-faint); }
-  footer .display-italic { font-size: 1.4rem; color: var(--volcano); margin-bottom: 8px; }
-
-  /* ============= UTILITIES ============= */
-  .divider { border: 0; height: 1px; background: var(--rule); margin: 48px 0; }
-  .quiet { color: var(--ink-soft); }
-  .tab-num { font-variant-numeric: tabular-nums; }
-
-  /* PRINT */
-  @media print {
-    .topnav, .map-btn, .day-route, .scroll-progress, .day-num { display: none !important; }
-    body { background: white; }
-    .day { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
-    .tz { background: white; color: black; border: 1px solid #ccc; }
-  }
-
-  /* ============= SCROLL PROGRESS BAR ============= */
-  .scroll-progress {
-    position: fixed; top: 0; left: 0; right: 0; height: 3px;
-    z-index: 200; pointer-events: none;
-    background: transparent;
-  }
-  .scroll-progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--tangerine) 0%, var(--berry) 50%, var(--volcano) 100%);
-    transition: width 0.08s linear;
-    box-shadow: 0 0 12px rgba(217, 118, 64, 0.4);
-  }
-
-  /* ============= REVEAL ON SCROLL ============= */
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: opacity, transform;
-  }
-  .reveal.in-view {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .reveal { opacity: 1; transform: none; transition: none; }
-  }
-
-  /* ============= ENHANCED DAY CARD ============= */
-  .day {
-    position: relative;
-    transition: border-color 0.25s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .day:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(26, 31, 38, 0.04), 0 18px 40px rgba(26, 31, 38, 0.10);
-  }
-  .day::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--tangerine) 0%, var(--volcano) 100%);
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.3s;
-  }
-
-  /* day number badge */
-  .day-num {
-    position: absolute;
-    top: 18px; right: 18px;
-    width: 32px; height: 32px;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Fraunces', serif;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--ink-faint);
-    background: var(--bg-card-alt);
-    border-radius: 50%;
-    letter-spacing: -0.02em;
-    transition: all 0.3s;
-    z-index: 2;
-  }
-  .day:hover .day-num {
-    background: var(--volcano);
-    color: var(--bg-card);
-    transform: rotate(-8deg) scale(1.1);
-  }
-  .day.today .day-num {
-    background: var(--tangerine);
-    color: white;
-  }
-  @media (min-width: 768px) {
-    .day-num { top: 24px; right: 28px; width: 36px; height: 36px; font-size: 1.05rem; }
-  }
-
-  /* ============= DAY ROUTE CTA ============= */
-  .day-route {
-    display: flex; align-items: center; gap: 12px;
-    width: 100%;
-    margin: 18px 0 4px;
-    padding: 14px 18px;
-    background: linear-gradient(135deg, var(--volcano) 0%, var(--volcano-deep) 100%);
-    color: #F0E4CC !important;
-    text-decoration: none !important;
-    border-radius: var(--radius);
-    font-size: 0.92rem;
-    font-weight: 500;
-    letter-spacing: 0.005em;
-    box-shadow: 0 1px 2px rgba(28, 61, 90, 0.18), 0 6px 18px rgba(28, 61, 90, 0.18);
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.25s,
-                background 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-  .day-route::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(120deg,
-      transparent 0%,
-      rgba(240, 228, 204, 0.08) 50%,
-      transparent 100%);
-    transform: translateX(-100%);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-    pointer-events: none;
-  }
-  .day-route:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 2px 4px rgba(28, 61, 90, 0.22), 0 14px 30px rgba(28, 61, 90, 0.26);
-    background: linear-gradient(135deg, var(--volcano-deep) 0%, #061727 100%);
-  }
-  .day-route:hover::after { transform: translateX(100%); }
-  .day-route:active { transform: translateY(0); }
-
-  .day-route .pin {
-    flex: 0 0 36px;
-    width: 36px; height: 36px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(240, 228, 204, 0.10);
-    border: 1px solid rgba(240, 228, 204, 0.18);
-    border-radius: 50%;
-  }
-  .day-route .pin svg { width: 16px; height: 16px; }
-  .day-route .body { display: flex; flex-direction: column; gap: 2px; flex: 1; }
-  .day-route .title {
-    font-family: 'Fraunces', serif;
-    font-size: 1.02rem;
-    font-weight: 500;
-    line-height: 1.1;
-    color: #F4EAD2;
-  }
-  .day-route .sub {
-    font-size: 0.74rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    opacity: 0.7;
-  }
-  .day-route .arrow {
-    flex: 0 0 auto;
-    font-family: 'Fraunces', serif;
-    font-size: 1.5rem;
-    line-height: 1;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .day-route:hover .arrow { transform: translateX(6px); }
-  .day.special .day-route {
-    background: linear-gradient(135deg, var(--berry) 0%, #5A2030 100%);
-    box-shadow: 0 1px 2px rgba(139, 58, 82, 0.20), 0 6px 18px rgba(139, 58, 82, 0.22);
-  }
-  .day.special .day-route:hover {
-    background: linear-gradient(135deg, #5A2030 0%, #3A1220 100%);
-  }
-
-  /* ============= TIMELINE INTERACTIVE ============= */
-  .timeline > li {
-    transition: padding-left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    position: relative;
-  }
-  .timeline > li .t-time {
-    transition: color 0.2s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .timeline > li:hover .t-time {
-    color: var(--berry);
-    transform: scale(1.05);
-    transform-origin: left center;
-  }
-  .timeline > li:hover .place {
-    color: var(--volcano);
-  }
-  .t-body .place {
-    transition: color 0.2s;
-  }
-
-  /* ============= MAP BUTTON (per-stop) ============= */
-  .map-btn {
-    background: var(--tangerine);
-    color: white !important;
-    padding: 3px 10px 3px 8px;
-    border-radius: 100px;
-    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 1px 0 rgba(217, 118, 64, 0.25);
-  }
-  .map-btn::before {
-    content: "";
-    display: inline-block;
-    width: 9px; height: 9px;
-    margin-right: 4px;
-    vertical-align: -1px;
-    background: currentColor;
-    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>');
-            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>');
-    -webkit-mask-size: contain; mask-size: contain;
-    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-  }
-  .map-btn:hover {
-    background: #C0612B;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(217, 118, 64, 0.4);
-  }
-
-  /* ============= DAY TAG ENHANCED ============= */
-  .day-tag {
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .day:hover .day-tag {
-    transform: translateY(-1px);
-  }
-  .tag-free {
-    box-shadow: 0 4px 12px rgba(217, 118, 64, 0.30);
-  }
-
-  /* ============= HERO ENHANCED ============= */
-  .hero::before {
-    animation: floatBlob 14s ease-in-out infinite;
-  }
-  @keyframes floatBlob {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-20px, 20px) scale(1.08); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero::before { animation: none; }
-  }
-  .hero h1 .word {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: heroIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-  .hero h1 .word:nth-child(1) { animation-delay: 0.1s; }
-  .hero h1 .word.it { animation-delay: 0.28s; }
-  @keyframes heroIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .hero h1 .word { animation: none; opacity: 1; transform: none; }
-  }
-
-  /* ============= NAV ACTIVE LINK ============= */
-  .topnav a.navlink {
-    position: relative;
-    transition: color 0.2s;
-  }
-  .topnav a.navlink::after {
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: -2px;
-    height: 2px;
-    background: var(--tangerine);
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .topnav a.navlink.active {
-    color: var(--volcano);
-  }
-  .topnav a.navlink.active::after,
-  .topnav a.navlink:hover::after {
-    transform: scaleX(1);
-  }
-
-  /* ============= TZ CLOCK PULSE ============= */
-  .tz-col .time::after {
-    content: "·";
-    margin-left: 4px;
-    color: var(--tangerine);
-    animation: blink 1.4s ease-in-out infinite;
-    opacity: 0.7;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 0.2; }
-    50% { opacity: 1; }
-  }
-
-  /* ============= CHECKLIST INTERACTIVE ============= */
-  .checklist li {
-    transition: transform 0.2s, border-color 0.2s, background 0.2s;
-  }
-  .checklist li:hover {
-    border-color: var(--rule);
-    transform: translateX(4px);
-  }
-  .checklist li:has(input:checked):hover { transform: none; }
-
-  /* ============= LINK CARD ENHANCED ============= */
-  .link-card {
-    position: relative; overflow: hidden;
-  }
-  .link-card::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; width: 100%; height: 2px;
-    background: var(--tangerine);
-    transform: scaleX(0);
-    transform-origin: left center;
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-  .link-card:hover::before { transform: scaleX(1); }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -823,489 +16,231 @@
 
 <nav class="topnav">
   <div class="topnav-inner">
-    <span class="brand">Чеджу 13–20.05</span>
-    <a class="navlink" href="#hero">Сводка</a>
+    <a class="brand" href="index.html">Чеджу 13–20.05</a>
     <a class="navlink" href="#days">Дни</a>
+    <a class="navlink" href="restaurants.html">Рестораны</a>
+    <a class="navlink" href="guide.html">Гид</a>
     <a class="navlink" href="#stay">Жильё</a>
-    <a class="navlink" href="#food">Еда</a>
     <a class="navlink" href="#logistics">Логистика</a>
     <a class="navlink" href="#checklist">Чек-лист</a>
   </div>
 </nav>
 
-<main class="wrap">
+<main class="wrap-wide">
 
   <!-- ===================== HERO ===================== -->
   <header class="hero" id="hero">
     <div class="hero-content">
-      <p class="eyebrow">Travel guide · 7 ночей</p>
+      <p class="eyebrow">Travel guide · 7 ночей · обновлено мая 2026</p>
       <h1 class="display">
         <span class="word">Чеджу</span><br>
         <span class="word it">в межсезонье</span>
       </h1>
-      <p style="font-size: 1.15rem; color: var(--ink-soft); max-width: 540px; margin-top: 24px; line-height: 1.5;">
+      <p style="font-size: 1.15rem; color: var(--ink-soft); max-width: 640px; margin-top: 24px; line-height: 1.5;">
         База в центре Сеогвипо. Будни — короткие морнинги до начала работы по MSK. Два выходных — большие радиальные выезды. Главное визуальное событие — <em>рассвет на Seongsan Ilchulbong в субботу</em>.
       </p>
       <dl class="hero-meta">
-        <div>
-          <dt>Прилёт</dt>
-          <dd>13 мая · 08:00</dd>
-        </div>
-        <div>
-          <dt>Вылет</dt>
-          <dd>20 мая</dd>
-        </div>
-        <div>
-          <dt>База</dt>
-          <dd>Сеогвипо</dd>
-        </div>
-        <div>
-          <dt>Часовой пояс</dt>
-          <dd>KST · +6 к MSK</dd>
-        </div>
+        <div><dt>Прилёт</dt><dd>13 мая · 08:00</dd></div>
+        <div><dt>Вылет</dt><dd>20 мая</dd></div>
+        <div><dt>База</dt><dd>Сеогвипо</dd></div>
+        <div><dt>Часовой пояс</dt><dd>KST · +6 к MSK</dd></div>
       </dl>
     </div>
   </header>
 
-  <!-- ===================== TIME ZONE ===================== -->
+  <!-- ===================== CLOCK ===================== -->
   <section style="padding-top: 24px;">
-    <div class="tz" id="liveclock">
+    <div class="tz" aria-label="Часы">
       <div class="tz-col">
-        <div class="lbl">сейчас</div>
+        <div class="lbl">Сейчас</div>
         <div class="city">Москва</div>
-        <div class="time tab-num" data-tz="msk">—</div>
-        <div class="date" data-tz-date="msk">—</div>
+        <div class="time" data-tz="msk">—:—</div>
+        <div class="date" data-tz-date="msk"></div>
       </div>
       <div class="tz-col">
-        <div class="lbl">сейчас</div>
+        <div class="lbl">Сейчас</div>
         <div class="city">Чеджу</div>
-        <div class="time tab-num" data-tz="kst">—</div>
-        <div class="date" data-tz-date="kst">—</div>
+        <div class="time" data-tz="kst">—:—</div>
+        <div class="date" data-tz-date="kst"></div>
       </div>
+      <div class="tz-divider">+6 часов вперёд</div>
     </div>
     <div class="work-window">
-      <strong>Рабочее окно по Чеджу:</strong> если в Москве смена 10:00–19:00, то по Чеджу это <span class="key">16:00 – 01:00</span>. Тело держится на MSK, утра свободные, бодрствование сдвинуто. Будни: подъём ~09:00 KST, экскурсия 09:30–15:00, обед/душ, в 16:00 за стол.
+      <strong>Рабочее окно</strong> 10:00–19:00 MSK = <span class="key">16:00–01:00 KST</span>. До 16:00 KST — мини-выезды и кафе с Wi-Fi. После 01:00 — отбой.
     </div>
   </section>
-
-  <hr class="divider">
 
   <!-- ===================== DAYS ===================== -->
   <section id="days">
     <div class="section-head">
-      <h2><span class="num">01</span>Программа по дням</h2>
-      <p class="quiet">Текущий день подсвечивается автоматически. Все локации — кликабельны, открываются в Google Maps.</p>
+      <h2><span class="num">01</span>Восемь дней</h2>
+      <p class="quiet">Тапни день — откроется детальный план с таймингом и маршрутом дня одной кнопкой в Google Maps.</p>
     </div>
 
-    <!-- ===== DAY 1 ===== -->
-    <article class="day" id="day-1" data-date="2026-05-13">
-      <header class="day-header">
-        <span class="day-date">13.05</span>
-        <span class="day-dow">среда</span>
-        <span class="day-tag tag-work">рабочий + прилёт</span>
-      </header>
-      <h3 class="day-title">Приземление и первый рабочий вечер</h3>
-      <p class="day-subtitle">Не нагружайся — впереди 9-часовая смена.</p>
-      <ol class="timeline">
-        <li>
-          <div class="t-time">08:00</div>
-          <div class="t-body"><span class="place">Jeju International Airport.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.5113,126.4929" target="_blank">Maps</a>
-            <div class="note">Прилёт. Получение багажа.</div></div>
-        </li>
-        <li>
-          <div class="t-time">08:30</div>
-          <div class="t-body"><span class="place">Airport Limousine Bus 600.</span>
-            <div class="note">Синий автобус, выход 5. Билет ~₩6 500. Идёт каждые 15 мин. Конечная — Sky Hotel Stop в центре Сеогвипо. ~1 ч 20 мин.</div></div>
-        </li>
-        <li>
-          <div class="t-time">10:30</div>
-          <div class="t-body"><span class="place">Заселение в отель.</span>
-            <div class="note">Если не пускают рано — оставь чемоданы у ресепшна и иди дальше.</div></div>
-        </li>
-        <li>
-          <div class="t-time">11:30</div>
-          <div class="t-body"><span class="place">Рынок Olle Maeil.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.247,126.5621" target="_blank">Maps</a>
-            <div class="note">Первый обед — <strong>galchi-jorim</strong> (тушёный cutlassfish с редькой). Ищи лавки с очередью корейцев.</div></div>
-        </li>
-        <li>
-          <div class="t-time">13:00</div>
-          <div class="t-body"><span class="place">Водопад Cheonjiyeon.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.2469,126.5589" target="_blank">Maps</a>
-            <div class="note">15 мин пешком от центра. Лёгкая разминка по парку.</div></div>
-        </li>
-      </ol>
-      <div class="work-block">
-        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
-        <span style="opacity: 0.7;">= 10:00 – 19:00 MSK</span>
-      </div>
-      <div class="day-note">
-        <strong>Главное:</strong> установить eSIM до посадки в самолёт, активировать в аэропорту. Без интернета Kakao T не поймает.
-      </div>
-    </article>
+    <div class="days-grid">
 
-    <!-- ===== DAY 2 ===== -->
-    <article class="day" id="day-2" data-date="2026-05-14">
-      <header class="day-header">
-        <span class="day-date">14.05</span>
-        <span class="day-dow">четверг</span>
-        <span class="day-tag tag-work">рабочий день</span>
-      </header>
-      <h3 class="day-title">Saeyeon Bridge + остров Saeseom</h3>
-      <p class="day-subtitle">Лёгкая прибрежная петля пешком из отеля.</p>
-      <ol class="timeline">
-        <li>
-          <div class="t-time">09:30</div>
-          <div class="t-body"><span class="place">Выход из отеля.</span></div>
-        </li>
-        <li>
-          <div class="t-time">09:45</div>
-          <div class="t-body"><span class="place">Saeyeon Bridge.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.2424,126.5587" target="_blank">Maps</a>
-            <div class="note">Пешеходный мост в форме парусов. Виды на гавань Сеогвипо.</div></div>
-        </li>
-        <li>
-          <div class="t-time">10:15</div>
-          <div class="t-body"><span class="place">Saeseom Island.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.241,126.5599" target="_blank">Maps</a>
-            <div class="note">Круговая тропа 1.2 км, ~30 мин с фото.</div></div>
-        </li>
-        <li>
-          <div class="t-time">11:00</div>
-          <div class="t-body"><span class="place">Олле-трейл, маршрут 6.</span>
-            <div class="note">Прибрежная тропа в сторону Cheonjiyeon. Можно отрезать 1 час.</div></div>
-        </li>
-        <li>
-          <div class="t-time">12:30</div>
-          <div class="t-body"><span class="place">Heukdwaeji Geori — Black Pork Street.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.2497,126.5650" target="_blank">Maps</a>
-            <div class="note">Чёрная свинина на углях. Десяток ресторанов в ряд, все хорошие.</div></div>
-        </li>
-        <li>
-          <div class="t-time">14:30</div>
-          <div class="t-body"><span class="place">Возврат в отель.</span></div>
-        </li>
-      </ol>
-      <div class="work-block">
-        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
-      </div>
-    </article>
+      <a class="day-tile" href="day-1.html" data-date="2026-05-13">
+        <span class="tile-num" aria-hidden="true">1</span>
+        <span class="tile-eyebrow"><span class="dot"></span>День 1 · прилёт</span>
+        <div class="tile-date">13.05</div>
+        <div class="tile-dow">среда</div>
+        <h3 class="tile-title">Приземление и первый рабочий вечер</h3>
+        <p class="tile-sub">Не нагружайся — впереди 9-часовая смена.</p>
+        <div class="tile-stops">
+          <span class="stop">Аэропорт</span>
+          <span class="stop">Olle Maeil</span>
+          <span class="stop">Cheonjiyeon</span>
+        </div>
+        <div class="tile-foot">
+          <span class="tile-tag tag-work">рабочий + прилёт</span>
+          <span class="tile-arrow">→</span>
+        </div>
+      </a>
 
-    <!-- ===== DAY 3 ===== -->
-    <article class="day special" id="day-3" data-date="2026-05-15">
-      <header class="day-header">
-        <span class="day-date">15.05</span>
-        <span class="day-dow">пятница</span>
-        <span class="day-tag tag-work">рабочий + Hallasan</span>
-      </header>
-      <h3 class="day-title">Hallasan · тропа Yeongsil → Witse Oreum</h3>
-      <p class="day-subtitle">Не до вершины (1947 м), а до плато Witse Oreum (1700 м). 5.8 км в одну сторону, 4–5 ч round trip. Главный физический день поездки.</p>
-      <ol class="timeline">
-        <li>
-          <div class="t-time">06:30</div>
-          <div class="t-body"><span class="place">Подъём.</span>
-            <div class="note">Кофе в номере, лёгкий завтрак (банан / батончик), вода.</div></div>
-        </li>
-        <li>
-          <div class="t-time">07:00</div>
-          <div class="t-body"><span class="place">Такси из Сеогвипо до Yeongsil parking.</span>
-            <div class="note">40 мин, ~₩30–35 000 через Kakao T. Парковка на 1280 м.</div></div>
-        </li>
-        <li>
-          <div class="t-time">07:45</div>
-          <div class="t-body"><span class="place">Yeongsil Trail entrance.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.3613,126.5326" target="_blank">Maps</a>
-            <div class="note">Регистрации не нужно (только для Seongpanak/Gwaneumsa). Темп — спокойный, но без остановок более 5 минут.</div></div>
-        </li>
-        <li>
-          <div class="t-time">10:00</div>
-          <div class="t-body"><span class="place">Witse Oreum (1700 м).</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.3589,126.5419" target="_blank">Maps</a>
-            <div class="note">Высокогорное плато с азалиями и видом на главный кратер Halla. 20 мин на фото и перекус.</div></div>
-        </li>
-        <li>
-          <div class="t-time">10:30</div>
-          <div class="t-body"><span class="place">Начало спуска.</span>
-            <div class="note">~1.5–2 часа вниз.</div></div>
-        </li>
-        <li>
-          <div class="t-time">12:30</div>
-          <div class="t-body"><span class="place">У парковки, такси обратно.</span></div>
-        </li>
-        <li>
-          <div class="t-time">13:30</div>
-          <div class="t-body"><span class="place">В отеле.</span>
-            <div class="note">Душ, обед в номер или быстро в Olle Maeil, час восстановления.</div></div>
-        </li>
-      </ol>
-      <div class="work-block">
-        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
-      </div>
-      <div class="day-note">
-        <strong>Критично:</strong> хорошие кроссовки, ветровка (на 1700 м будет +8…+12), вода 1.5 л, перекус. <strong>Альтернатива при дожде:</strong> заменить на тур «Hallasan hiking» на GetYourGuide (6 ч с гидом) — но он жёстче по таймингу. Или перенести Sanbangsan со вторника.
-      </div>
-    </article>
+      <a class="day-tile" href="day-2.html" data-date="2026-05-14">
+        <span class="tile-num" aria-hidden="true">2</span>
+        <span class="tile-eyebrow"><span class="dot"></span>День 2 · прибрежная петля</span>
+        <div class="tile-date">14.05</div>
+        <div class="tile-dow">четверг</div>
+        <h3 class="tile-title">Saeyeon Bridge + остров Saeseom</h3>
+        <p class="tile-sub">Лёгкая прибрежная петля пешком из отеля.</p>
+        <div class="tile-stops">
+          <span class="stop">Saeyeon Bridge</span>
+          <span class="stop">Saeseom</span>
+          <span class="stop">Black Pork St.</span>
+        </div>
+        <div class="tile-foot">
+          <span class="tile-tag tag-work">рабочий день</span>
+          <span class="tile-arrow">→</span>
+        </div>
+      </a>
 
-    <!-- ===== DAY 4 - SATURDAY EAST ===== -->
-    <article class="day" id="day-4" data-date="2026-05-16">
-      <header class="day-header">
-        <span class="day-date">16.05</span>
-        <span class="day-dow">суббота</span>
-        <span class="day-tag tag-free">восток · рассвет</span>
-      </header>
-      <h3 class="day-title">Sunrise Peak · Udo · Seopjikoji</h3>
-      <p class="day-subtitle">Приватный таксист-гид на весь день, забор в 03:50. <strong>Главное визуальное событие поездки</strong> — рассвет на вулканическом конусе UNESCO.</p>
-      <ol class="timeline">
-        <li>
-          <div class="t-time">03:30</div>
-          <div class="t-body"><span class="place">Подъём.</span></div>
-        </li>
-        <li>
-          <div class="t-time">03:50</div>
-          <div class="t-body"><span class="place">Забор из отеля таксистом.</span>
-            <div class="note">~1 ч 15 мин до Seongsan.</div></div>
-        </li>
-        <li>
-          <div class="t-time">05:00</div>
-          <div class="t-body"><span class="place">Seongsan Ilchulbong · парковка.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.4591,126.9396" target="_blank">Maps</a>
-            <div class="note">Билет ₩5 000. Подъём 30 мин по ступеням.</div></div>
-        </li>
-        <li>
-          <div class="t-time">05:18</div>
-          <div class="t-body"><span class="place">Рассвет.</span>
-            <div class="note">На вершине вулканического конуса, лицом к восточному океану.</div></div>
-        </li>
-        <li>
-          <div class="t-time">06:30</div>
-          <div class="t-body"><span class="place">Спуск, кофе у подножия.</span></div>
-        </li>
-        <li>
-          <div class="t-time">07:30</div>
-          <div class="t-body"><span class="place">Паром на остров Udo.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.5066,126.9534" target="_blank">Maps</a>
-            <div class="note">15 мин. На острове — hop-on/hop-off автобус (билет на день).</div></div>
-        </li>
-        <li>
-          <div class="t-time">08:00</div>
-          <div class="t-body"><span class="place">Sanho Beach → Geommeolle Beach → Udo Peak.</span>
-            <div class="note">Коралловый пляж → чёрный песок → виды.</div></div>
-        </li>
-        <li>
-          <div class="t-time">11:30</div>
-          <div class="t-body"><span class="place">Обед на Udo.</span>
-            <div class="note"><strong>Abalone bibimbap</strong> или <strong>abalone porridge</strong>. Udo — столица абалоне.</div></div>
-        </li>
-        <li>
-          <div class="t-time">13:00</div>
-          <div class="t-body"><span class="place">Обратный паром, таксист забирает в Seongsan Port.</span></div>
-        </li>
-        <li>
-          <div class="t-time">13:30</div>
-          <div class="t-body"><span class="place">Seopjikoji.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.4257,126.9286" target="_blank">Maps</a>
-            <div class="note">Мыс с маяком и часовней Glass House (Tadao Ando). 1 час.</div></div>
-        </li>
-        <li>
-          <div class="t-time">15:00</div>
-          <div class="t-body"><span class="place">Hamdeok Beach.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.5436,126.6701" target="_blank">Maps</a>
-            <div class="note">Бирюзовая вода, кофе на берегу.</div></div>
-        </li>
-        <li>
-          <div class="t-time">16:00</div>
-          <div class="t-body"><span class="place">Saryeoni Forest (опционально).</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.4314,126.6519" target="_blank">Maps</a>
-            <div class="note">Кедровая тропа, 40 мин. Если устал — пропусти.</div></div>
-        </li>
-        <li>
-          <div class="t-time">18:00</div>
-          <div class="t-body"><span class="place">Возврат в Сеогвипо.</span></div>
-        </li>
-        <li>
-          <div class="t-time">19:00</div>
-          <div class="t-body"><span class="place">Ужин: galchi-gui (жареный cutlassfish целиком).</span>
-            <div class="note">Ресторан <strong>Geommun Galchi</strong> или <strong>Solmuni</strong> в Сеогвипо. Визитка чеджуской кухни.</div></div>
-        </li>
-      </ol>
-      <div class="day-note">
-        <strong>Букинг:</strong> GetYourGuide / KKDay → «Jeju Private Taxi Tour English-speaking driver». В комментариях: <em>«pickup 03:50 AM from hotel in Seogwipo for Seongsan sunrise»</em>. Бюджет ~₩400–500 000 за машину на день.
-      </div>
-    </article>
+      <a class="day-tile featured special" href="day-3.html" data-date="2026-05-15">
+        <span class="tile-num" aria-hidden="true">3</span>
+        <span class="tile-eyebrow"><span class="dot"></span>День 3 · главный физический день</span>
+        <div class="tile-date">15.05</div>
+        <div class="tile-dow">пятница</div>
+        <h3 class="tile-title">Hallasan · тропа Yeongsil → Witse Oreum</h3>
+        <p class="tile-sub">Не до вершины (1947 м), а до плато 1700 м. 5.8 км в одну сторону, 4–5 ч round trip.</p>
+        <div class="tile-stops">
+          <span class="stop">Yeongsil Trail</span>
+          <span class="stop">Witse Oreum 1700м</span>
+        </div>
+        <div class="tile-foot">
+          <span class="tile-tag tag-work">рабочий + Hallasan</span>
+          <span class="tile-arrow">→</span>
+        </div>
+      </a>
 
-    <!-- ===== DAY 5 - SUNDAY WEST ===== -->
-    <article class="day" id="day-5" data-date="2026-05-17">
-      <header class="day-header">
-        <span class="day-date">17.05</span>
-        <span class="day-dow">воскресенье</span>
-        <span class="day-tag tag-free">запад</span>
-      </header>
-      <h3 class="day-title">O'Sulloc · Aewol · Hyeopjae · закат Songaksan</h3>
-      <p class="day-subtitle">Приватный таксист или Fabio West Bus Tour (групповой, дешевле).</p>
-      <ol class="timeline">
-        <li>
-          <div class="t-time">08:30</div>
-          <div class="t-body"><span class="place">Забор из отеля.</span></div>
-        </li>
-        <li>
-          <div class="t-time">09:15</div>
-          <div class="t-body"><span class="place">O'Sulloc Tea Museum + Innisfree Jeju House.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.2876,126.2898" target="_blank">Maps</a>
-            <div class="note">Чайные поля, 30 мин прогулки + зелёный чай латте.</div></div>
-        </li>
-        <li>
-          <div class="t-time">11:00</div>
-          <div class="t-body"><span class="place">Camellia Hill (опция) или сразу Aewol.</span></div>
-        </li>
-        <li>
-          <div class="t-time">12:30</div>
-          <div class="t-body"><span class="place">Aewol Cafe Street.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.4602,126.3081" target="_blank">Maps</a>
-            <div class="note">Обед. Топ-кафе: <strong>Bonte Museum Café</strong> (архитектура Tadao Ando), <strong>Monsant</strong> (стеклянное здание), <strong>Ankara Park</strong>.</div></div>
-        </li>
-        <li>
-          <div class="t-time">14:30</div>
-          <div class="t-body"><span class="place">Hyeopjae + Geumneung Beach.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.394,126.24" target="_blank">Maps</a>
-            <div class="note">Самая бирюзовая вода острова. Конический остров Biyangdo на горизонте. 1 час прогулки с фото.</div></div>
-        </li>
-        <li>
-          <div class="t-time">16:00</div>
-          <div class="t-body"><span class="place">Hallim Park.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.388,126.2606" target="_blank">Maps</a>
-            <div class="note">Ботсад + лавовые пещеры Hyeopjae и Ssangyong (это не закрытый Manjanggul). 1.5 ч.</div></div>
-        </li>
-        <li>
-          <div class="t-time">18:30</div>
-          <div class="t-body"><span class="place">Закат — Songaksan.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.1991,126.295" target="_blank">Maps</a>
-            <div class="note">Вулканический конус на юго-западе, тропа 1 час. Закат ~19:25.</div></div>
-        </li>
-        <li>
-          <div class="t-time">20:30</div>
-          <div class="t-body"><span class="place">Возврат в Сеогвипо.</span></div>
-        </li>
-      </ol>
-      <div class="day-note">
-        <strong>Букинг:</strong> «Jeju West Bus Tour from Seogwipo City» на GetYourGuide (искать <em>Fabio</em>) — групповой, англоязычный гид, забор из Casaloma/центра. Или приватный таксист (дороже, ~₩400k).
-      </div>
-    </article>
+      <a class="day-tile featured" href="day-4.html" data-date="2026-05-16">
+        <span class="tile-num" aria-hidden="true">4</span>
+        <span class="tile-eyebrow"><span class="dot"></span>День 4 · главное визуальное событие</span>
+        <div class="tile-date">16.05</div>
+        <div class="tile-dow">суббота</div>
+        <h3 class="tile-title">Sunrise Peak · Udo · Seopjikoji</h3>
+        <p class="tile-sub">Приватный таксист-гид на весь день. Рассвет на вулканическом конусе UNESCO в 05:18.</p>
+        <div class="tile-stops">
+          <span class="stop">Seongsan Ilchulbong</span>
+          <span class="stop">Udo Island</span>
+          <span class="stop">Seopjikoji</span>
+          <span class="stop">Hamdeok Beach</span>
+        </div>
+        <div class="tile-foot">
+          <span class="tile-tag tag-free">восток · рассвет</span>
+          <span class="tile-arrow">→</span>
+        </div>
+      </a>
 
-    <!-- ===== DAY 6 ===== -->
-    <article class="day" id="day-6" data-date="2026-05-18">
-      <header class="day-header">
-        <span class="day-date">18.05</span>
-        <span class="day-dow">понедельник</span>
-        <span class="day-tag tag-work">рабочий день</span>
-      </header>
-      <h3 class="day-title">Jusangjeolli Cliffs + Jungmun Beach</h3>
-      <p class="day-subtitle">Спокойное восстановление после weekend.</p>
-      <ol class="timeline">
-        <li>
-          <div class="t-time">09:30</div>
-          <div class="t-body"><span class="place">Kakao T до Jusangjeolli Cliffs.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.2375,126.4225" target="_blank">Maps</a>
-            <div class="note">15 мин, ~₩15 000. Шестигранные базальтовые столбы у океана. UNESCO Global Geopark.</div></div>
-        </li>
-        <li>
-          <div class="t-time">10:30</div>
-          <div class="t-body"><span class="place">Прогулка к Jungmun Beach.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.2444,126.4106" target="_blank">Maps</a>
-            <div class="note">30–40 мин по береговой тропе или такси.</div></div>
-        </li>
-        <li>
-          <div class="t-time">11:30</div>
-          <div class="t-body"><span class="place">Кофе на Jungmun Saekdal Beach.</span>
-            <div class="note">Серфинг-вью, кафе с террасами на скалах.</div></div>
-        </li>
-        <li>
-          <div class="t-time">13:30</div>
-          <div class="t-body"><span class="place">Такси обратно в Сеогвипо.</span>
-            <div class="note">~₩18 000.</div></div>
-        </li>
-        <li>
-          <div class="t-time">14:00</div>
-          <div class="t-body"><span class="place">В отеле.</span></div>
-        </li>
-      </ol>
-      <div class="work-block">
-        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
-      </div>
-    </article>
+      <a class="day-tile featured" href="day-5.html" data-date="2026-05-17">
+        <span class="tile-num" aria-hidden="true">5</span>
+        <span class="tile-eyebrow"><span class="dot"></span>День 5 · запад · бирюзовая вода</span>
+        <div class="tile-date">17.05</div>
+        <div class="tile-dow">воскресенье</div>
+        <h3 class="tile-title">O'Sulloc · Aewol · Hyeopjae · закат Songaksan</h3>
+        <p class="tile-sub">Приватный таксист или Fabio West Bus Tour. Чайные поля, кафе на скалах, бирюза, закат.</p>
+        <div class="tile-stops">
+          <span class="stop">O'Sulloc</span>
+          <span class="stop">Aewol cafés</span>
+          <span class="stop">Hyeopjae</span>
+          <span class="stop">Songaksan sunset</span>
+        </div>
+        <div class="tile-foot">
+          <span class="tile-tag tag-free">запад</span>
+          <span class="tile-arrow">→</span>
+        </div>
+      </a>
 
-    <!-- ===== DAY 7 ===== -->
-    <article class="day" id="day-7" data-date="2026-05-19">
-      <header class="day-header">
-        <span class="day-date">19.05</span>
-        <span class="day-dow">вторник</span>
-        <span class="day-tag tag-work">рабочий день</span>
-      </header>
-      <h3 class="day-title">Sanbangsan + Yongmeori Coast</h3>
-      <p class="day-subtitle">Последний полноценный day-out.</p>
-      <ol class="timeline">
-        <li>
-          <div class="t-time">09:00</div>
-          <div class="t-body"><span class="place">Kakao T до Sanbangsan.</span>
-            <div class="note">~₩30 000, 30 мин.</div></div>
-        </li>
-        <li>
-          <div class="t-time">09:30</div>
-          <div class="t-body"><span class="place">Sanbanggulsa Temple в гроте.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.2362,126.3137" target="_blank">Maps</a>
-            <div class="note">Подъём 300 ступеней, 20 мин. Виды на южное побережье.</div></div>
-        </li>
-        <li>
-          <div class="t-time">10:30</div>
-          <div class="t-body"><span class="place">Yongmeori Coast.</span>
-            <a class="map-btn" href="https://maps.google.com/?q=33.2317,126.3119" target="_blank">Maps</a>
-            <div class="note">Скальный мыс «голова дракона». Прогулка по береговой кромке между слоями вулканического туфа. 40 мин.</div></div>
-        </li>
-        <li>
-          <div class="t-time">11:30</div>
-          <div class="t-body"><span class="place">Обед у пляжа Hwasun.</span></div>
-        </li>
-        <li>
-          <div class="t-time">13:00</div>
-          <div class="t-body"><span class="place">Kakao T обратно.</span>
-            <div class="note">~₩30 000.</div></div>
-        </li>
-        <li>
-          <div class="t-time">14:00</div>
-          <div class="t-body"><span class="place">В отеле.</span></div>
-        </li>
-      </ol>
-      <div class="work-block">
-        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
-      </div>
-      <div class="day-note">
-        <strong>Если устал после Hallasan и weekend:</strong> замени на кафе для работы и Olle-маршрут 7 пешком из центра. Низкая нагрузка — тоже валидно.
-      </div>
-    </article>
+      <a class="day-tile" href="day-6.html" data-date="2026-05-18">
+        <span class="tile-num" aria-hidden="true">6</span>
+        <span class="tile-eyebrow"><span class="dot"></span>День 6 · восстановление</span>
+        <div class="tile-date">18.05</div>
+        <div class="tile-dow">понедельник</div>
+        <h3 class="tile-title">Jusangjeolli Cliffs + Jungmun Beach</h3>
+        <p class="tile-sub">Спокойное восстановление после weekend.</p>
+        <div class="tile-stops">
+          <span class="stop">Jusangjeolli</span>
+          <span class="stop">Jungmun Beach</span>
+        </div>
+        <div class="tile-foot">
+          <span class="tile-tag tag-work">рабочий день</span>
+          <span class="tile-arrow">→</span>
+        </div>
+      </a>
 
-    <!-- ===== DAY 8 ===== -->
-    <article class="day" id="day-8" data-date="2026-05-20">
-      <header class="day-header">
-        <span class="day-date">20.05</span>
-        <span class="day-dow">среда</span>
-        <span class="day-tag tag-travel">вылет</span>
-      </header>
-      <h3 class="day-title">Вылет</h3>
-      <p class="day-subtitle">Время зависит от рейса.</p>
-      <ol class="timeline">
-        <li>
-          <div class="t-time">—</div>
-          <div class="t-body"><span class="place">Выезд за 2.5–3 часа до вылета.</span>
-            <div class="note">Bus 600 — 1.5 ч дорога + 1 ч запас + чек-ин в аэропорту.</div></div>
-        </li>
-        <li>
-          <div class="t-time">опц</div>
-          <div class="t-body"><span class="place">Последний завтрак на Olle Maeil + 30 мин у Cheonjiyeon</span>
-            <div class="note">Если рейс не раньше 13:00.</div></div>
-        </li>
-      </ol>
-    </article>
+      <a class="day-tile" href="day-7.html" data-date="2026-05-19">
+        <span class="tile-num" aria-hidden="true">7</span>
+        <span class="tile-eyebrow"><span class="dot"></span>День 7 · дракон у моря</span>
+        <div class="tile-date">19.05</div>
+        <div class="tile-dow">вторник</div>
+        <h3 class="tile-title">Sanbangsan + Yongmeori Coast</h3>
+        <p class="tile-sub">Последний полноценный day-out. Храм в гроте + скальный мыс.</p>
+        <div class="tile-stops">
+          <span class="stop">Sanbangsan</span>
+          <span class="stop">Yongmeori Coast</span>
+        </div>
+        <div class="tile-foot">
+          <span class="tile-tag tag-work">рабочий день</span>
+          <span class="tile-arrow">→</span>
+        </div>
+      </a>
 
+      <a class="day-tile" href="day-8.html" data-date="2026-05-20">
+        <span class="tile-num" aria-hidden="true">8</span>
+        <span class="tile-eyebrow"><span class="dot"></span>День 8 · домой</span>
+        <div class="tile-date">20.05</div>
+        <div class="tile-dow">среда</div>
+        <h3 class="tile-title">Вылет</h3>
+        <p class="tile-sub">Bus 600 — 1.5 ч дорога + 1 ч запас + чек-ин. Время зависит от рейса.</p>
+        <div class="tile-stops">
+          <span class="stop">Olle Maeil (опц)</span>
+          <span class="stop">Bus 600</span>
+          <span class="stop">Аэропорт</span>
+        </div>
+        <div class="tile-foot">
+          <span class="tile-tag tag-travel">вылет</span>
+          <span class="tile-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ===================== QUICK SECTIONS ===================== -->
+  <section style="padding-top: 0;">
+    <div class="grid-3">
+      <a class="link-card" href="restaurants.html" style="padding: 22px 24px;">
+        <span class="title" style="font-family: 'Fraunces', serif; font-size: 1.2rem;">Рестораны →</span>
+        <span class="sub">18 курируемых мест: galchi · 흑돼지 · абалоне · кафе</span>
+      </a>
+      <a class="link-card" href="guide.html" style="padding: 22px 24px;">
+        <span class="title" style="font-family: 'Fraunces', serif; font-size: 1.2rem;">Гид →</span>
+        <span class="sub">Apps · фразы · деньги · этикет · экстренные номера</span>
+      </a>
+      <a class="link-card" href="#checklist" style="padding: 22px 24px;">
+        <span class="title" style="font-family: 'Fraunces', serif; font-size: 1.2rem;">Чек-лист до вылета →</span>
+        <span class="sub">10 пунктов · сохраняется локально</span>
+      </a>
+    </div>
   </section>
 
   <hr class="divider">
@@ -1340,71 +275,11 @@
 
   <hr class="divider">
 
-  <!-- ===================== FOOD ===================== -->
-  <section id="food">
-    <div class="section-head">
-      <h2><span class="num">03</span>Что есть</h2>
-      <p class="quiet">Семь визитных блюд Чеджу. Без этих — поездка не считается.</p>
-    </div>
-    <div class="food-list">
-      <div class="food-item">
-        <div class="food-num">01</div>
-        <div>
-          <h4>Heuk dwaeji · черная свинина</h4>
-          <p>Жирная свинина островной породы, жарится на углях. Black Pork Street рядом с Olle Maeil — десяток ресторанов в ряд.</p>
-        </div>
-      </div>
-      <div class="food-item">
-        <div class="food-num">02</div>
-        <div>
-          <h4>Galchi-gui · жареный cutlassfish</h4>
-          <p>Метровая серебристая рыба целиком на гриле. Solmuni, Geommun Galchi в Сеогвипо.</p>
-        </div>
-      </div>
-      <div class="food-item">
-        <div class="food-num">03</div>
-        <div>
-          <h4>Galchi-jorim · тушёный cutlassfish</h4>
-          <p>В остром соусе с редькой, корейской капустой. На Olle Maeil в любой палатке с дымящимися кастрюлями.</p>
-        </div>
-      </div>
-      <div class="food-item">
-        <div class="food-num">04</div>
-        <div>
-          <h4>Jeonbok-juk · каша с абалоне</h4>
-          <p>Кремовая рисовая каша с морским ушком. Лучше всего — на острове Udo (в субботу), где абалоне локальные.</p>
-        </div>
-      </div>
-      <div class="food-item">
-        <div class="food-num">05</div>
-        <div>
-          <h4>Mom-guk · суп с водорослями и свининой</h4>
-          <p>Прозрачный суп с мом (бурые водоросли) и свининой. Местный, не туристический.</p>
-        </div>
-      </div>
-      <div class="food-item">
-        <div class="food-num">06</div>
-        <div>
-          <h4>Hoeddeok · сладкие пончики с орехами</h4>
-          <p>Уличная еда на Olle Maeil. Жареный пончик с начинкой из коричневого сахара и орехов. Один — ₩1500.</p>
-        </div>
-      </div>
-      <div class="food-item">
-        <div class="food-num">07</div>
-        <div>
-          <h4>Tangerine soft serve</h4>
-          <p>Мороженое из чеджуских мандаринов. Кафе O'Sulloc, Aewol-кафе.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="divider">
-
   <!-- ===================== LOGISTICS ===================== -->
   <section id="logistics">
     <div class="section-head">
-      <h2><span class="num">04</span>Логистика</h2>
+      <h2><span class="num">03</span>Логистика</h2>
+      <p class="quiet">Связь · транспорт · деньги · погода. Подробный гид по приложениям и фразам — на странице <a href="guide.html">«Гид»</a>.</p>
     </div>
 
     <div class="grid-2">
@@ -1444,56 +319,33 @@
           <li>На Hallasan (1700 м) — +8/+12°C, ветер.</li>
         </ul>
       </div>
-
-      <div class="info-card">
-        <h3>Приложения</h3>
-        <ul>
-          <li><strong>Naver Map</strong> — основная карта (Google Maps в Корее куцый).</li>
-          <li><strong>Kakao T</strong> — такси.</li>
-          <li><strong>Papago</strong> — переводчик (лучше Google для KR).</li>
-          <li><strong>KakaoTalk</strong> — мессенджер для связи с гидами.</li>
-          <li><strong>Klook / GetYourGuide</strong> — туры.</li>
-        </ul>
-      </div>
-
-      <div class="info-card">
-        <h3>Что взять</h3>
-        <ul>
-          <li>Лёгкий софтшелл/ветровка (Hallasan, Sunrise Peak).</li>
-          <li>Кроссовки с протектором.</li>
-          <li>Лёгкий дождевик/зонт.</li>
-          <li>Power-bank.</li>
-          <li>Адаптер Type C/F (как в Европе).</li>
-          <li>Купальник (фото на Hyeopjae).</li>
-        </ul>
-      </div>
     </div>
 
     <h3 style="margin-top: 40px; color: var(--volcano);">Ключевые ссылки</h3>
     <div class="links-grid">
-      <a class="link-card" href="https://www.getyourguide.com/jeju-province-l32347/" target="_blank">
+      <a class="link-card" href="https://www.getyourguide.com/jeju-province-l32347/" target="_blank" rel="noopener">
         <span class="title">GetYourGuide · Jeju</span>
         <span class="sub">Туры с забором из Сеогвипо</span>
       </a>
-      <a class="link-card" href="https://www.klook.com/en-US/city/164-jeju-things-to-do/" target="_blank">
+      <a class="link-card" href="https://www.klook.com/en-US/city/164-jeju-things-to-do/" target="_blank" rel="noopener">
         <span class="title">Klook · Jeju</span>
         <span class="sub">Альтернативные туры</span>
       </a>
-      <a class="link-card" href="https://www.koreatraveleasy.com/" target="_blank">
-        <span class="title">KoreaTravelEasy</span>
-        <span class="sub">Приватные туры с гидом</span>
-      </a>
-      <a class="link-card" href="https://www.airalo.com/korea-esim" target="_blank">
+      <a class="link-card" href="https://www.airalo.com/korea-esim" target="_blank" rel="noopener">
         <span class="title">Airalo · eSIM</span>
         <span class="sub">Korea unlimited 7 дней</span>
       </a>
-      <a class="link-card" href="https://map.naver.com/" target="_blank">
+      <a class="link-card" href="https://map.naver.com/" target="_blank" rel="noopener">
         <span class="title">Naver Map</span>
         <span class="sub">Основная карта Кореи</span>
       </a>
-      <a class="link-card" href="https://www.booking.com/searchresults.html?ss=Seogwipo" target="_blank">
+      <a class="link-card" href="https://www.booking.com/searchresults.html?ss=Seogwipo" target="_blank" rel="noopener">
         <span class="title">Booking · Сеогвипо</span>
         <span class="sub">Whistlelark / Casaloma / Suites</span>
+      </a>
+      <a class="link-card" href="https://english.visitjeju.net/" target="_blank" rel="noopener">
+        <span class="title">Visit Jeju (officiel)</span>
+        <span class="sub">Расписания, погода, события</span>
       </a>
     </div>
   </section>
@@ -1503,15 +355,15 @@
   <!-- ===================== CHECKLIST ===================== -->
   <section id="checklist">
     <div class="section-head">
-      <h2><span class="num">05</span>Сделать до вылета</h2>
-      <p class="quiet">Чекбоксы сохраняются локально. Можно открывать с любого устройства, но прогресс на каждом свой.</p>
+      <h2><span class="num">04</span>Сделать до вылета</h2>
+      <p class="quiet">Чекбоксы сохраняются локально. Открой с любого устройства — прогресс на каждом свой.</p>
     </div>
     <div class="check-progress">
       <span>Прогресс</span>
       <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
       <span class="count" id="check-count">0/10</span>
     </div>
-    <ul class="checklist" id="checklist">
+    <ul class="checklist" id="checklist-list">
       <li><label>
         <input type="checkbox" data-key="ck1">
         <span>Забронировать отель в центре Сеогвипо (Whistlelark / Casaloma) на 13–20 мая.
@@ -1567,222 +419,6 @@
 
 </main>
 
-<script>
-  // ==== Live clock ====
-  function pad(n) { return String(n).padStart(2, '0'); }
-  function fmtDate(d) {
-    const months = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
-    return `${d.getDate()} ${months[d.getMonth()]}, ${['вс','пн','вт','ср','чт','пт','сб'][d.getDay()]}`;
-  }
-  function updateClocks() {
-    const now = new Date();
-    // MSK = UTC+3, KST = UTC+9
-    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-    const msk = new Date(utc + 3 * 3600000);
-    const kst = new Date(utc + 9 * 3600000);
-    document.querySelector('[data-tz="msk"]').textContent = `${pad(msk.getHours())}:${pad(msk.getMinutes())}`;
-    document.querySelector('[data-tz="kst"]').textContent = `${pad(kst.getHours())}:${pad(kst.getMinutes())}`;
-    document.querySelector('[data-tz-date="msk"]').textContent = fmtDate(msk);
-    document.querySelector('[data-tz-date="kst"]').textContent = fmtDate(kst);
-  }
-  updateClocks();
-  setInterval(updateClocks, 30000);
-
-  // ==== Highlight today ====
-  function highlightToday() {
-    const now = new Date();
-    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-    const kst = new Date(utc + 9 * 3600000);
-    const todayStr = `${kst.getFullYear()}-${pad(kst.getMonth()+1)}-${pad(kst.getDate())}`;
-    document.querySelectorAll('.day').forEach(d => {
-      if (d.dataset.date === todayStr) {
-        d.classList.add('today');
-        // scroll to it after a beat
-        setTimeout(() => d.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
-      }
-    });
-  }
-  highlightToday();
-
-  // ==== Checklist + localStorage ====
-  const STORAGE_KEY = 'jeju-trip-checks-v1';
-  function loadChecks() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
-  }
-  function saveChecks(state) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }
-  function updateProgress() {
-    const boxes = document.querySelectorAll('.checklist input[type="checkbox"]');
-    const total = boxes.length;
-    const done = Array.from(boxes).filter(b => b.checked).length;
-    document.getElementById('check-count').textContent = `${done}/${total}`;
-    document.getElementById('bar-fill').style.width = `${(done/total)*100}%`;
-  }
-  const state = loadChecks();
-  document.querySelectorAll('.checklist input[type="checkbox"]').forEach(box => {
-    const key = box.dataset.key;
-    if (state[key]) box.checked = true;
-    box.addEventListener('change', () => {
-      state[key] = box.checked;
-      saveChecks(state);
-      updateProgress();
-    });
-  });
-  updateProgress();
-
-  // ==== Day route: build single-click Google Maps directions per day ====
-  // For each .day card: collect coordinates from existing .map-btn links,
-  // build a Google Maps directions URL with all stops as waypoints,
-  // insert a prominent "Маршрут дня" CTA, and upgrade each per-stop link
-  // to open directions (navigation), not just the pin.
-  (function buildDayRoutes() {
-    const COORD_RE = /[?&]q=([-\d.]+),([-\d.]+)/;
-
-    document.querySelectorAll('.day').forEach((day, idx) => {
-      // Inject day number badge (День 1, 2, ...)
-      const num = document.createElement('span');
-      num.className = 'day-num';
-      num.textContent = idx + 1;
-      num.setAttribute('aria-label', `День ${idx + 1}`);
-      day.appendChild(num);
-
-      // Collect stops
-      const stops = [];
-      day.querySelectorAll('.map-btn').forEach(a => {
-        const m = a.getAttribute('href').match(COORD_RE);
-        if (!m) return;
-        const lat = m[1], lng = m[2];
-        const name = (a.previousElementSibling && a.previousElementSibling.classList.contains('place'))
-          ? a.previousElementSibling.textContent.replace(/[.,;:]\s*$/, '').trim()
-          : '';
-        stops.push({ lat, lng, name });
-        // Upgrade per-stop link → opens directions to this point
-        a.setAttribute('href',
-          `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}` +
-          (name ? `&destination_place_id=&travelmode=driving` : '&travelmode=driving'));
-        a.setAttribute('rel', 'noopener');
-        a.setAttribute('aria-label', `Открыть маршрут к ${name || 'точке'} в Google Maps`);
-      });
-
-      if (stops.length < 2) return;
-
-      // Build the multi-stop directions URL
-      // https://www.google.com/maps/dir/?api=1&origin=A&destination=Z&waypoints=B|C|D&travelmode=driving
-      const origin = `${stops[0].lat},${stops[0].lng}`;
-      const dest = `${stops[stops.length - 1].lat},${stops[stops.length - 1].lng}`;
-      const wp = stops.slice(1, -1).map(s => `${s.lat},${s.lng}`).join('|');
-      const url =
-        `https://www.google.com/maps/dir/?api=1` +
-        `&origin=${origin}` +
-        `&destination=${dest}` +
-        (wp ? `&waypoints=${encodeURIComponent(wp)}` : '') +
-        `&travelmode=driving`;
-
-      // Build the CTA element
-      const cta = document.createElement('a');
-      cta.className = 'day-route';
-      cta.href = url;
-      cta.target = '_blank';
-      cta.rel = 'noopener';
-      cta.setAttribute('aria-label', `Открыть маршрут всего дня (${stops.length} точек) в Google Maps`);
-      cta.innerHTML = `
-        <span class="pin" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3z"/>
-            <line x1="9" y1="4" x2="9" y2="17"/>
-            <line x1="15" y1="7" x2="15" y2="20"/>
-          </svg>
-        </span>
-        <span class="body">
-          <span class="title">Маршрут дня · ${stops.length} ${pluralStops(stops.length)}</span>
-          <span class="sub">Открыть в Google Maps · навигация</span>
-        </span>
-        <span class="arrow" aria-hidden="true">→</span>`;
-
-      // Insert after the subtitle if exists, else after title, else at top of day
-      const subtitle = day.querySelector('.day-subtitle');
-      const title = day.querySelector('.day-title');
-      const anchor = subtitle || title;
-      if (anchor) anchor.insertAdjacentElement('afterend', cta);
-      else day.querySelector('.day-header').insertAdjacentElement('afterend', cta);
-    });
-
-    function pluralStops(n) {
-      const r10 = n % 10, r100 = n % 100;
-      if (r10 === 1 && r100 !== 11) return 'точка';
-      if (r10 >= 2 && r10 <= 4 && (r100 < 10 || r100 >= 20)) return 'точки';
-      return 'точек';
-    }
-  })();
-
-  // ==== Reveal on scroll: fade-up day cards & sections ====
-  (function revealOnScroll() {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const targets = document.querySelectorAll(
-      '.day, .info-card, .food-item, .link-card, .tz, .work-window, .check-progress, .section-head'
-    );
-    targets.forEach(el => el.classList.add('reveal'));
-    if (reduced || !('IntersectionObserver' in window)) {
-      targets.forEach(el => el.classList.add('in-view'));
-      return;
-    }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('in-view');
-          io.unobserve(e.target);
-        }
-      });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
-    targets.forEach(el => io.observe(el));
-  })();
-
-  // ==== Scroll progress bar ====
-  (function scrollProgress() {
-    const bar = document.getElementById('scroll-progress-bar');
-    if (!bar) return;
-    let ticking = false;
-    function update() {
-      const h = document.documentElement;
-      const scrolled = h.scrollTop || document.body.scrollTop;
-      const max = (h.scrollHeight - h.clientHeight) || 1;
-      bar.style.width = Math.min(100, (scrolled / max) * 100) + '%';
-      ticking = false;
-    }
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(update);
-        ticking = true;
-      }
-    }, { passive: true });
-    update();
-  })();
-
-  // ==== Active nav link based on visible section ====
-  (function activeNav() {
-    const links = Array.from(document.querySelectorAll('.topnav a.navlink'));
-    if (!links.length) return;
-    const map = new Map();
-    links.forEach(l => {
-      const id = l.getAttribute('href').replace('#', '');
-      const sec = document.getElementById(id);
-      if (sec) map.set(sec, l);
-    });
-    if (!('IntersectionObserver' in window)) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        const link = map.get(e.target);
-        if (!link) return;
-        if (e.isIntersecting) {
-          links.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-    map.forEach((_link, sec) => io.observe(sec));
-  })();
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
