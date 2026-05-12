@@ -507,14 +507,319 @@
 
   /* PRINT */
   @media print {
-    .topnav, .map-btn { display: none !important; }
+    .topnav, .map-btn, .day-route, .scroll-progress, .day-num { display: none !important; }
     body { background: white; }
     .day { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
     .tz { background: white; color: black; border: 1px solid #ccc; }
   }
+
+  /* ============= SCROLL PROGRESS BAR ============= */
+  .scroll-progress {
+    position: fixed; top: 0; left: 0; right: 0; height: 3px;
+    z-index: 200; pointer-events: none;
+    background: transparent;
+  }
+  .scroll-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--tangerine) 0%, var(--berry) 50%, var(--volcano) 100%);
+    transition: width 0.08s linear;
+    box-shadow: 0 0 12px rgba(217, 118, 64, 0.4);
+  }
+
+  /* ============= REVEAL ON SCROLL ============= */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ============= ENHANCED DAY CARD ============= */
+  .day {
+    position: relative;
+    transition: border-color 0.25s, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .day:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(26, 31, 38, 0.04), 0 18px 40px rgba(26, 31, 38, 0.10);
+  }
+  .day::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--tangerine) 0%, var(--volcano) 100%);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s;
+  }
+
+  /* day number badge */
+  .day-num {
+    position: absolute;
+    top: 18px; right: 18px;
+    width: 32px; height: 32px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink-faint);
+    background: var(--bg-card-alt);
+    border-radius: 50%;
+    letter-spacing: -0.02em;
+    transition: all 0.3s;
+    z-index: 2;
+  }
+  .day:hover .day-num {
+    background: var(--volcano);
+    color: var(--bg-card);
+    transform: rotate(-8deg) scale(1.1);
+  }
+  .day.today .day-num {
+    background: var(--tangerine);
+    color: white;
+  }
+  @media (min-width: 768px) {
+    .day-num { top: 24px; right: 28px; width: 36px; height: 36px; font-size: 1.05rem; }
+  }
+
+  /* ============= DAY ROUTE CTA ============= */
+  .day-route {
+    display: flex; align-items: center; gap: 12px;
+    width: 100%;
+    margin: 18px 0 4px;
+    padding: 14px 18px;
+    background: linear-gradient(135deg, var(--volcano) 0%, var(--volcano-deep) 100%);
+    color: #F0E4CC !important;
+    text-decoration: none !important;
+    border-radius: var(--radius);
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.005em;
+    box-shadow: 0 1px 2px rgba(28, 61, 90, 0.18), 0 6px 18px rgba(28, 61, 90, 0.18);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.25s,
+                background 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .day-route::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg,
+      transparent 0%,
+      rgba(240, 228, 204, 0.08) 50%,
+      transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+  .day-route:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(28, 61, 90, 0.22), 0 14px 30px rgba(28, 61, 90, 0.26);
+    background: linear-gradient(135deg, var(--volcano-deep) 0%, #061727 100%);
+  }
+  .day-route:hover::after { transform: translateX(100%); }
+  .day-route:active { transform: translateY(0); }
+
+  .day-route .pin {
+    flex: 0 0 36px;
+    width: 36px; height: 36px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(240, 228, 204, 0.10);
+    border: 1px solid rgba(240, 228, 204, 0.18);
+    border-radius: 50%;
+  }
+  .day-route .pin svg { width: 16px; height: 16px; }
+  .day-route .body { display: flex; flex-direction: column; gap: 2px; flex: 1; }
+  .day-route .title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #F4EAD2;
+  }
+  .day-route .sub {
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+  .day-route .arrow {
+    flex: 0 0 auto;
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem;
+    line-height: 1;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .day-route:hover .arrow { transform: translateX(6px); }
+  .day.special .day-route {
+    background: linear-gradient(135deg, var(--berry) 0%, #5A2030 100%);
+    box-shadow: 0 1px 2px rgba(139, 58, 82, 0.20), 0 6px 18px rgba(139, 58, 82, 0.22);
+  }
+  .day.special .day-route:hover {
+    background: linear-gradient(135deg, #5A2030 0%, #3A1220 100%);
+  }
+
+  /* ============= TIMELINE INTERACTIVE ============= */
+  .timeline > li {
+    transition: padding-left 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+  .timeline > li .t-time {
+    transition: color 0.2s, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .timeline > li:hover .t-time {
+    color: var(--berry);
+    transform: scale(1.05);
+    transform-origin: left center;
+  }
+  .timeline > li:hover .place {
+    color: var(--volcano);
+  }
+  .t-body .place {
+    transition: color 0.2s;
+  }
+
+  /* ============= MAP BUTTON (per-stop) ============= */
+  .map-btn {
+    background: var(--tangerine);
+    color: white !important;
+    padding: 3px 10px 3px 8px;
+    border-radius: 100px;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 0 rgba(217, 118, 64, 0.25);
+  }
+  .map-btn::before {
+    content: "";
+    display: inline-block;
+    width: 9px; height: 9px;
+    margin-right: 4px;
+    vertical-align: -1px;
+    background: currentColor;
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>');
+            mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>');
+    -webkit-mask-size: contain; mask-size: contain;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  }
+  .map-btn:hover {
+    background: #C0612B;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(217, 118, 64, 0.4);
+  }
+
+  /* ============= DAY TAG ENHANCED ============= */
+  .day-tag {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .day:hover .day-tag {
+    transform: translateY(-1px);
+  }
+  .tag-free {
+    box-shadow: 0 4px 12px rgba(217, 118, 64, 0.30);
+  }
+
+  /* ============= HERO ENHANCED ============= */
+  .hero::before {
+    animation: floatBlob 14s ease-in-out infinite;
+  }
+  @keyframes floatBlob {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-20px, 20px) scale(1.08); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero::before { animation: none; }
+  }
+  .hero h1 .word {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: heroIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .hero h1 .word:nth-child(1) { animation-delay: 0.1s; }
+  .hero h1 .word.it { animation-delay: 0.28s; }
+  @keyframes heroIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero h1 .word { animation: none; opacity: 1; transform: none; }
+  }
+
+  /* ============= NAV ACTIVE LINK ============= */
+  .topnav a.navlink {
+    position: relative;
+    transition: color 0.2s;
+  }
+  .topnav a.navlink::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -2px;
+    height: 2px;
+    background: var(--tangerine);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .topnav a.navlink.active {
+    color: var(--volcano);
+  }
+  .topnav a.navlink.active::after,
+  .topnav a.navlink:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* ============= TZ CLOCK PULSE ============= */
+  .tz-col .time::after {
+    content: "·";
+    margin-left: 4px;
+    color: var(--tangerine);
+    animation: blink 1.4s ease-in-out infinite;
+    opacity: 0.7;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 0.2; }
+    50% { opacity: 1; }
+  }
+
+  /* ============= CHECKLIST INTERACTIVE ============= */
+  .checklist li {
+    transition: transform 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .checklist li:hover {
+    border-color: var(--rule);
+    transform: translateX(4px);
+  }
+  .checklist li:has(input:checked):hover { transform: none; }
+
+  /* ============= LINK CARD ENHANCED ============= */
+  .link-card {
+    position: relative; overflow: hidden;
+  }
+  .link-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 2px;
+    background: var(--tangerine);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .link-card:hover::before { transform: scaleX(1); }
 </style>
 </head>
 <body>
+
+<div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scroll-progress-bar"></div></div>
 
 <nav class="topnav">
   <div class="topnav-inner">
@@ -1325,6 +1630,158 @@
     });
   });
   updateProgress();
+
+  // ==== Day route: build single-click Google Maps directions per day ====
+  // For each .day card: collect coordinates from existing .map-btn links,
+  // build a Google Maps directions URL with all stops as waypoints,
+  // insert a prominent "Маршрут дня" CTA, and upgrade each per-stop link
+  // to open directions (navigation), not just the pin.
+  (function buildDayRoutes() {
+    const COORD_RE = /[?&]q=([-\d.]+),([-\d.]+)/;
+
+    document.querySelectorAll('.day').forEach((day, idx) => {
+      // Inject day number badge (День 1, 2, ...)
+      const num = document.createElement('span');
+      num.className = 'day-num';
+      num.textContent = idx + 1;
+      num.setAttribute('aria-label', `День ${idx + 1}`);
+      day.appendChild(num);
+
+      // Collect stops
+      const stops = [];
+      day.querySelectorAll('.map-btn').forEach(a => {
+        const m = a.getAttribute('href').match(COORD_RE);
+        if (!m) return;
+        const lat = m[1], lng = m[2];
+        const name = (a.previousElementSibling && a.previousElementSibling.classList.contains('place'))
+          ? a.previousElementSibling.textContent.replace(/[.,;:]\s*$/, '').trim()
+          : '';
+        stops.push({ lat, lng, name });
+        // Upgrade per-stop link → opens directions to this point
+        a.setAttribute('href',
+          `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}` +
+          (name ? `&destination_place_id=&travelmode=driving` : '&travelmode=driving'));
+        a.setAttribute('rel', 'noopener');
+        a.setAttribute('aria-label', `Открыть маршрут к ${name || 'точке'} в Google Maps`);
+      });
+
+      if (stops.length < 2) return;
+
+      // Build the multi-stop directions URL
+      // https://www.google.com/maps/dir/?api=1&origin=A&destination=Z&waypoints=B|C|D&travelmode=driving
+      const origin = `${stops[0].lat},${stops[0].lng}`;
+      const dest = `${stops[stops.length - 1].lat},${stops[stops.length - 1].lng}`;
+      const wp = stops.slice(1, -1).map(s => `${s.lat},${s.lng}`).join('|');
+      const url =
+        `https://www.google.com/maps/dir/?api=1` +
+        `&origin=${origin}` +
+        `&destination=${dest}` +
+        (wp ? `&waypoints=${encodeURIComponent(wp)}` : '') +
+        `&travelmode=driving`;
+
+      // Build the CTA element
+      const cta = document.createElement('a');
+      cta.className = 'day-route';
+      cta.href = url;
+      cta.target = '_blank';
+      cta.rel = 'noopener';
+      cta.setAttribute('aria-label', `Открыть маршрут всего дня (${stops.length} точек) в Google Maps`);
+      cta.innerHTML = `
+        <span class="pin" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7l6-3 6 3 6-3v13l-6 3-6-3-6 3z"/>
+            <line x1="9" y1="4" x2="9" y2="17"/>
+            <line x1="15" y1="7" x2="15" y2="20"/>
+          </svg>
+        </span>
+        <span class="body">
+          <span class="title">Маршрут дня · ${stops.length} ${pluralStops(stops.length)}</span>
+          <span class="sub">Открыть в Google Maps · навигация</span>
+        </span>
+        <span class="arrow" aria-hidden="true">→</span>`;
+
+      // Insert after the subtitle if exists, else after title, else at top of day
+      const subtitle = day.querySelector('.day-subtitle');
+      const title = day.querySelector('.day-title');
+      const anchor = subtitle || title;
+      if (anchor) anchor.insertAdjacentElement('afterend', cta);
+      else day.querySelector('.day-header').insertAdjacentElement('afterend', cta);
+    });
+
+    function pluralStops(n) {
+      const r10 = n % 10, r100 = n % 100;
+      if (r10 === 1 && r100 !== 11) return 'точка';
+      if (r10 >= 2 && r10 <= 4 && (r100 < 10 || r100 >= 20)) return 'точки';
+      return 'точек';
+    }
+  })();
+
+  // ==== Reveal on scroll: fade-up day cards & sections ====
+  (function revealOnScroll() {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const targets = document.querySelectorAll(
+      '.day, .info-card, .food-item, .link-card, .tz, .work-window, .check-progress, .section-head'
+    );
+    targets.forEach(el => el.classList.add('reveal'));
+    if (reduced || !('IntersectionObserver' in window)) {
+      targets.forEach(el => el.classList.add('in-view'));
+      return;
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    targets.forEach(el => io.observe(el));
+  })();
+
+  // ==== Scroll progress bar ====
+  (function scrollProgress() {
+    const bar = document.getElementById('scroll-progress-bar');
+    if (!bar) return;
+    let ticking = false;
+    function update() {
+      const h = document.documentElement;
+      const scrolled = h.scrollTop || document.body.scrollTop;
+      const max = (h.scrollHeight - h.clientHeight) || 1;
+      bar.style.width = Math.min(100, (scrolled / max) * 100) + '%';
+      ticking = false;
+    }
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+    update();
+  })();
+
+  // ==== Active nav link based on visible section ====
+  (function activeNav() {
+    const links = Array.from(document.querySelectorAll('.topnav a.navlink'));
+    if (!links.length) return;
+    const map = new Map();
+    links.forEach(l => {
+      const id = l.getAttribute('href').replace('#', '');
+      const sec = document.getElementById(id);
+      if (sec) map.set(sec, l);
+    });
+    if (!('IntersectionObserver' in window)) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const link = map.get(e.target);
+        if (!link) return;
+        if (e.isIntersecting) {
+          links.forEach(l => l.classList.remove('active'));
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    map.forEach((_link, sec) => io.observe(sec));
+  })();
 </script>
 
 </body>
