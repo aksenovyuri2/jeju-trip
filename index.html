@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1C3D5A">
+<title>Чеджу · 13–20 мая 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F4EEE3;
+    --bg-card: #FBF7EE;
+    --bg-card-alt: #EEE5D2;
+    --ink: #1A1F26;
+    --ink-soft: #4A5159;
+    --ink-faint: #7A7268;
+    --rule: #D9CFB8;
+    --rule-soft: #E8DFC9;
+    --volcano: #1C3D5A;
+    --volcano-deep: #0E2438;
+    --tangerine: #D97640;
+    --tangerine-soft: #F0C9A8;
+    --moss: #5A6F4A;
+    --berry: #8B3A52;
+    --shadow: 0 1px 2px rgba(26, 31, 38, 0.04), 0 8px 24px rgba(26, 31, 38, 0.06);
+    --radius: 8px;
+    --radius-lg: 16px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    font-feature-settings: "ss01", "ss02", "kern";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection { background: var(--tangerine); color: white; }
+
+  /* ============= TYPOGRAPHY ============= */
+  .display {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 0;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+  .display-italic {
+    font-family: 'Fraunces', Georgia, serif;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+    font-style: italic;
+    font-weight: 300;
+  }
+  h1, h2, h3, h4 { font-family: 'Fraunces', Georgia, serif; font-weight: 500; letter-spacing: -0.015em; }
+  h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1; margin: 0; }
+  h2 { font-size: clamp(1.75rem, 4vw, 2.5rem); margin: 0 0 0.5em; line-height: 1.1; }
+  h3 { font-size: 1.4rem; margin: 0 0 0.4em; line-height: 1.2; }
+  h4 { font-size: 1.1rem; margin: 0 0 0.3em; font-family: 'DM Sans', sans-serif; font-weight: 700; letter-spacing: 0.01em; }
+  p { margin: 0 0 1em; }
+  strong { font-weight: 700; color: var(--ink); }
+  a { color: var(--volcano); text-decoration: underline; text-decoration-color: var(--rule); text-underline-offset: 3px; transition: text-decoration-color 0.2s; }
+  a:hover { text-decoration-color: var(--tangerine); }
+
+  .eyebrow {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  /* ============= LAYOUT ============= */
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  @media (min-width: 768px) { .wrap { padding: 0 40px; } }
+
+  /* ============= STICKY NAV ============= */
+  .topnav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(244, 238, 227, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .topnav-inner {
+    max-width: 760px; margin: 0 auto;
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 24px;
+    overflow-x: auto; scrollbar-width: none;
+  }
+  .topnav-inner::-webkit-scrollbar { display: none; }
+  .topnav .brand {
+    font-family: 'Fraunces', serif; font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--volcano);
+    white-space: nowrap;
+    margin-right: 8px;
+  }
+  .topnav .brand::before {
+    content: ""; display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--tangerine); border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .topnav a.navlink {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    text-decoration: none;
+    white-space: nowrap;
+    padding: 4px 0;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .topnav a.navlink:hover { color: var(--volcano); }
+
+  /* ============= HERO ============= */
+  .hero {
+    padding: 64px 0 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute;
+    top: 0; right: -100px; width: 380px; height: 380px;
+    background: radial-gradient(circle, var(--tangerine-soft) 0%, transparent 65%);
+    opacity: 0.5; pointer-events: none;
+    z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero .eyebrow { margin-bottom: 20px; }
+  .hero h1 { margin-bottom: 28px; }
+  .hero h1 .word { display: inline-block; }
+  .hero h1 .it { font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1; font-style: italic; font-weight: 300; color: var(--volcano); }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 24px 40px;
+    padding: 24px 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin: 28px 0 0;
+  }
+  .hero-meta dt { font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 4px; }
+  .hero-meta dd { margin: 0; font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 400; color: var(--volcano); letter-spacing: -0.01em; }
+
+  /* ============= SECTION ============= */
+  section { padding: 56px 0; }
+  .section-head { margin-bottom: 36px; }
+  .section-head .num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100;
+    font-size: 1.1rem;
+    color: var(--tangerine);
+    margin-right: 12px;
+    vertical-align: 4px;
+  }
+
+  /* ============= TZ CLOCK ============= */
+  .tz {
+    background: var(--volcano);
+    color: #F0E4CC;
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    margin: 32px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    box-shadow: var(--shadow);
+  }
+  .tz-col .lbl {
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(240, 228, 204, 0.6);
+    margin-bottom: 8px;
+  }
+  .tz-col .city { font-family: 'Fraunces', serif; font-size: 1rem; opacity: 0.85; margin-bottom: 4px; }
+  .tz-col .time { font-family: 'Fraunces', serif; font-size: 2.4rem; font-weight: 400; letter-spacing: -0.02em; }
+  .tz-col .date { font-size: 0.85rem; opacity: 0.7; margin-top: 4px; }
+  .tz-divider {
+    position: relative;
+    text-align: center;
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(240, 228, 204, 0.5);
+    margin: 12px 0 -8px;
+    grid-column: 1 / -1;
+  }
+
+  .work-window {
+    background: var(--bg-card);
+    border: 1px solid var(--rule);
+    padding: 20px 24px;
+    border-radius: var(--radius);
+    margin: 20px 0;
+    font-size: 0.93rem;
+  }
+  .work-window .key { color: var(--tangerine); font-weight: 600; }
+
+  /* ============= DAY CARDS ============= */
+  .day {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    padding: 28px 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid transparent;
+    transition: border-color 0.2s, transform 0.2s;
+    scroll-margin-top: 72px;
+  }
+  @media (min-width: 768px) { .day { padding: 36px 40px; } }
+  .day.today {
+    border-color: var(--tangerine);
+    background: linear-gradient(180deg, #FBF7EE 0%, #FFF5E6 100%);
+  }
+  .day.today .day-header::after {
+    content: "сегодня";
+    display: inline-block;
+    margin-left: 12px;
+    background: var(--tangerine);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    vertical-align: 6px;
+  }
+  .day.special { background: linear-gradient(180deg, #FBF7EE 0%, #F5EBD7 100%); }
+
+  .day-header {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .day-date {
+    font-family: 'Fraunces', serif;
+    font-size: 2.2rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--volcano);
+    line-height: 1;
+  }
+  .day-dow {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+    font-size: 1.4rem;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+  .day-tag {
+    margin-left: auto;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+  .tag-work { background: var(--bg-card-alt); color: var(--ink-soft); }
+  .tag-free { background: var(--tangerine); color: white; }
+  .tag-travel { background: var(--moss); color: #F4EEE3; }
+
+  .day-title { font-size: 1.5rem; color: var(--volcano); margin: 16px 0 6px; line-height: 1.2; }
+  .day-subtitle { font-size: 0.95rem; color: var(--ink-soft); font-style: italic; margin-bottom: 20px; }
+
+  /* TIMELINE */
+  .timeline { list-style: none; padding: 0; margin: 16px 0 0; }
+  .timeline > li {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 16px;
+    padding: 14px 0;
+    border-top: 1px dashed var(--rule);
+  }
+  .timeline > li:first-child { border-top: 0; padding-top: 0; }
+  .t-time {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--tangerine);
+    letter-spacing: -0.01em;
+    padding-top: 2px;
+  }
+  .t-body { font-size: 0.95rem; }
+  .t-body .place {
+    font-weight: 600;
+    color: var(--ink);
+    margin-right: 4px;
+  }
+  .t-body .note {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+  .map-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: var(--volcano); color: #F0E4CC !important;
+    font-size: 0.72rem; letter-spacing: 0.05em;
+    padding: 3px 9px; border-radius: 100px;
+    text-decoration: none;
+    margin-left: 6px;
+    font-weight: 500;
+    vertical-align: 2px;
+    transition: background 0.2s;
+  }
+  .map-btn:hover { background: var(--volcano-deep); }
+  .map-btn svg { width: 9px; height: 9px; }
+
+  .day-note {
+    margin-top: 20px;
+    padding: 16px 18px;
+    background: var(--bg-card-alt);
+    border-left: 3px solid var(--tangerine);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
+  .day-note strong { color: var(--berry); }
+
+  .work-block {
+    margin-top: 18px;
+    padding: 12px 16px;
+    background: var(--volcano);
+    color: #F0E4CC;
+    font-size: 0.85rem;
+    border-radius: var(--radius);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .work-block .lbl { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.7; }
+  .work-block .val { font-family: 'Fraunces', serif; font-size: 1rem; }
+
+  /* ============= LOGISTICS CARDS ============= */
+  .grid-2 {
+    display: grid; gap: 20px;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+
+  .info-card {
+    background: var(--bg-card);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--rule-soft);
+  }
+  .info-card h3 { color: var(--volcano); }
+  .info-card ul { padding-left: 18px; margin: 0; }
+  .info-card li { margin: 8px 0; }
+  .info-card .pill {
+    display: inline-block;
+    font-size: 0.72rem;
+    background: var(--bg-card-alt);
+    padding: 2px 9px;
+    border-radius: 100px;
+    margin-right: 6px;
+    color: var(--ink-soft);
+  }
+  .info-card .pill.tier { background: var(--tangerine-soft); color: var(--volcano-deep); font-weight: 600; }
+
+  /* FOOD */
+  .food-list { display: grid; gap: 14px; margin-top: 20px; }
+  .food-item {
+    display: grid; grid-template-columns: auto 1fr; gap: 16px;
+    padding: 14px 18px;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--rule-soft);
+  }
+  .food-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+    color: var(--tangerine);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1;
+    padding-top: 4px;
+  }
+  .food-item h4 { margin-bottom: 4px; }
+  .food-item p { font-size: 0.88rem; color: var(--ink-soft); margin: 0; }
+
+  /* ============= CHECKLIST ============= */
+  .check-progress {
+    background: var(--bg-card);
+    padding: 18px 22px;
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+    display: flex; align-items: center; gap: 16px;
+    border: 1px solid var(--rule-soft);
+  }
+  .check-progress .bar {
+    flex: 1;
+    height: 6px; background: var(--rule-soft);
+    border-radius: 100px; overflow: hidden;
+  }
+  .check-progress .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--tangerine) 0%, var(--volcano) 100%);
+    border-radius: 100px;
+    transition: width 0.4s ease;
+    width: 0%;
+  }
+  .check-progress .count {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    color: var(--volcano);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .checklist { list-style: none; padding: 0; margin: 0; }
+  .checklist li {
+    background: var(--bg-card);
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    transition: all 0.2s;
+    overflow: hidden;
+  }
+  .checklist label {
+    display: grid; grid-template-columns: 24px 1fr; gap: 14px;
+    align-items: start;
+    padding: 16px 20px;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+  .checklist input[type="checkbox"] {
+    appearance: none; -webkit-appearance: none;
+    width: 20px; height: 20px;
+    border: 2px solid var(--rule);
+    border-radius: 5px;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    margin: 1px 0 0;
+    transition: all 0.15s;
+  }
+  .checklist input[type="checkbox"]:checked {
+    background: var(--volcano);
+    border-color: var(--volcano);
+  }
+  .checklist input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px; top: 1px;
+    width: 5px; height: 10px;
+    border: solid #F0E4CC;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .checklist label:has(input:checked) {
+    text-decoration: line-through;
+    color: var(--ink-faint);
+  }
+  .checklist li:has(input:checked) {
+    background: var(--bg-card-alt);
+    opacity: 0.6;
+  }
+  .checklist .meta {
+    display: block; font-size: 0.8rem; color: var(--ink-faint);
+    margin-top: 4px;
+  }
+
+  /* ============= LINKS GRID ============= */
+  .links-grid { display: grid; gap: 12px; margin-top: 20px; grid-template-columns: 1fr; }
+  @media (min-width: 500px) { .links-grid { grid-template-columns: 1fr 1fr; } }
+  .link-card {
+    display: flex; flex-direction: column;
+    padding: 18px 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--rule-soft);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+  .link-card:hover { border-color: var(--volcano); transform: translateY(-2px); }
+  .link-card .title { font-weight: 700; color: var(--volcano); margin-bottom: 2px; font-size: 0.95rem; }
+  .link-card .sub { font-size: 0.8rem; color: var(--ink-faint); }
+
+  /* ============= FOOTER ============= */
+  footer {
+    padding: 60px 0 80px;
+    text-align: center;
+    border-top: 1px solid var(--rule);
+    margin-top: 40px;
+  }
+  footer p { font-size: 0.85rem; color: var(--ink-faint); }
+  footer .display-italic { font-size: 1.4rem; color: var(--volcano); margin-bottom: 8px; }
+
+  /* ============= UTILITIES ============= */
+  .divider { border: 0; height: 1px; background: var(--rule); margin: 48px 0; }
+  .quiet { color: var(--ink-soft); }
+  .tab-num { font-variant-numeric: tabular-nums; }
+
+  /* PRINT */
+  @media print {
+    .topnav, .map-btn { display: none !important; }
+    body { background: white; }
+    .day { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+    .tz { background: white; color: black; border: 1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <span class="brand">Чеджу 13–20.05</span>
+    <a class="navlink" href="#hero">Сводка</a>
+    <a class="navlink" href="#days">Дни</a>
+    <a class="navlink" href="#stay">Жильё</a>
+    <a class="navlink" href="#food">Еда</a>
+    <a class="navlink" href="#logistics">Логистика</a>
+    <a class="navlink" href="#checklist">Чек-лист</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero" id="hero">
+    <div class="hero-content">
+      <p class="eyebrow">Travel guide · 7 ночей</p>
+      <h1 class="display">
+        <span class="word">Чеджу</span><br>
+        <span class="word it">в межсезонье</span>
+      </h1>
+      <p style="font-size: 1.15rem; color: var(--ink-soft); max-width: 540px; margin-top: 24px; line-height: 1.5;">
+        База в центре Сеогвипо. Будни — короткие морнинги до начала работы по MSK. Два выходных — большие радиальные выезды. Главное визуальное событие — <em>рассвет на Seongsan Ilchulbong в субботу</em>.
+      </p>
+      <dl class="hero-meta">
+        <div>
+          <dt>Прилёт</dt>
+          <dd>13 мая · 08:00</dd>
+        </div>
+        <div>
+          <dt>Вылет</dt>
+          <dd>20 мая</dd>
+        </div>
+        <div>
+          <dt>База</dt>
+          <dd>Сеогвипо</dd>
+        </div>
+        <div>
+          <dt>Часовой пояс</dt>
+          <dd>KST · +6 к MSK</dd>
+        </div>
+      </dl>
+    </div>
+  </header>
+
+  <!-- ===================== TIME ZONE ===================== -->
+  <section style="padding-top: 24px;">
+    <div class="tz" id="liveclock">
+      <div class="tz-col">
+        <div class="lbl">сейчас</div>
+        <div class="city">Москва</div>
+        <div class="time tab-num" data-tz="msk">—</div>
+        <div class="date" data-tz-date="msk">—</div>
+      </div>
+      <div class="tz-col">
+        <div class="lbl">сейчас</div>
+        <div class="city">Чеджу</div>
+        <div class="time tab-num" data-tz="kst">—</div>
+        <div class="date" data-tz-date="kst">—</div>
+      </div>
+    </div>
+    <div class="work-window">
+      <strong>Рабочее окно по Чеджу:</strong> если в Москве смена 10:00–19:00, то по Чеджу это <span class="key">16:00 – 01:00</span>. Тело держится на MSK, утра свободные, бодрствование сдвинуто. Будни: подъём ~09:00 KST, экскурсия 09:30–15:00, обед/душ, в 16:00 за стол.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ===================== DAYS ===================== -->
+  <section id="days">
+    <div class="section-head">
+      <h2><span class="num">01</span>Программа по дням</h2>
+      <p class="quiet">Текущий день подсвечивается автоматически. Все локации — кликабельны, открываются в Google Maps.</p>
+    </div>
+
+    <!-- ===== DAY 1 ===== -->
+    <article class="day" id="day-1" data-date="2026-05-13">
+      <header class="day-header">
+        <span class="day-date">13.05</span>
+        <span class="day-dow">среда</span>
+        <span class="day-tag tag-work">рабочий + прилёт</span>
+      </header>
+      <h3 class="day-title">Приземление и первый рабочий вечер</h3>
+      <p class="day-subtitle">Не нагружайся — впереди 9-часовая смена.</p>
+      <ol class="timeline">
+        <li>
+          <div class="t-time">08:00</div>
+          <div class="t-body"><span class="place">Jeju International Airport.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.5113,126.4929" target="_blank">Maps</a>
+            <div class="note">Прилёт. Получение багажа.</div></div>
+        </li>
+        <li>
+          <div class="t-time">08:30</div>
+          <div class="t-body"><span class="place">Airport Limousine Bus 600.</span>
+            <div class="note">Синий автобус, выход 5. Билет ~₩6 500. Идёт каждые 15 мин. Конечная — Sky Hotel Stop в центре Сеогвипо. ~1 ч 20 мин.</div></div>
+        </li>
+        <li>
+          <div class="t-time">10:30</div>
+          <div class="t-body"><span class="place">Заселение в отель.</span>
+            <div class="note">Если не пускают рано — оставь чемоданы у ресепшна и иди дальше.</div></div>
+        </li>
+        <li>
+          <div class="t-time">11:30</div>
+          <div class="t-body"><span class="place">Рынок Olle Maeil.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.247,126.5621" target="_blank">Maps</a>
+            <div class="note">Первый обед — <strong>galchi-jorim</strong> (тушёный cutlassfish с редькой). Ищи лавки с очередью корейцев.</div></div>
+        </li>
+        <li>
+          <div class="t-time">13:00</div>
+          <div class="t-body"><span class="place">Водопад Cheonjiyeon.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.2469,126.5589" target="_blank">Maps</a>
+            <div class="note">15 мин пешком от центра. Лёгкая разминка по парку.</div></div>
+        </li>
+      </ol>
+      <div class="work-block">
+        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
+        <span style="opacity: 0.7;">= 10:00 – 19:00 MSK</span>
+      </div>
+      <div class="day-note">
+        <strong>Главное:</strong> установить eSIM до посадки в самолёт, активировать в аэропорту. Без интернета Kakao T не поймает.
+      </div>
+    </article>
+
+    <!-- ===== DAY 2 ===== -->
+    <article class="day" id="day-2" data-date="2026-05-14">
+      <header class="day-header">
+        <span class="day-date">14.05</span>
+        <span class="day-dow">четверг</span>
+        <span class="day-tag tag-work">рабочий день</span>
+      </header>
+      <h3 class="day-title">Saeyeon Bridge + остров Saeseom</h3>
+      <p class="day-subtitle">Лёгкая прибрежная петля пешком из отеля.</p>
+      <ol class="timeline">
+        <li>
+          <div class="t-time">09:30</div>
+          <div class="t-body"><span class="place">Выход из отеля.</span></div>
+        </li>
+        <li>
+          <div class="t-time">09:45</div>
+          <div class="t-body"><span class="place">Saeyeon Bridge.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.2424,126.5587" target="_blank">Maps</a>
+            <div class="note">Пешеходный мост в форме парусов. Виды на гавань Сеогвипо.</div></div>
+        </li>
+        <li>
+          <div class="t-time">10:15</div>
+          <div class="t-body"><span class="place">Saeseom Island.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.241,126.5599" target="_blank">Maps</a>
+            <div class="note">Круговая тропа 1.2 км, ~30 мин с фото.</div></div>
+        </li>
+        <li>
+          <div class="t-time">11:00</div>
+          <div class="t-body"><span class="place">Олле-трейл, маршрут 6.</span>
+            <div class="note">Прибрежная тропа в сторону Cheonjiyeon. Можно отрезать 1 час.</div></div>
+        </li>
+        <li>
+          <div class="t-time">12:30</div>
+          <div class="t-body"><span class="place">Heukdwaeji Geori — Black Pork Street.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.2497,126.5650" target="_blank">Maps</a>
+            <div class="note">Чёрная свинина на углях. Десяток ресторанов в ряд, все хорошие.</div></div>
+        </li>
+        <li>
+          <div class="t-time">14:30</div>
+          <div class="t-body"><span class="place">Возврат в отель.</span></div>
+        </li>
+      </ol>
+      <div class="work-block">
+        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
+      </div>
+    </article>
+
+    <!-- ===== DAY 3 ===== -->
+    <article class="day special" id="day-3" data-date="2026-05-15">
+      <header class="day-header">
+        <span class="day-date">15.05</span>
+        <span class="day-dow">пятница</span>
+        <span class="day-tag tag-work">рабочий + Hallasan</span>
+      </header>
+      <h3 class="day-title">Hallasan · тропа Yeongsil → Witse Oreum</h3>
+      <p class="day-subtitle">Не до вершины (1947 м), а до плато Witse Oreum (1700 м). 5.8 км в одну сторону, 4–5 ч round trip. Главный физический день поездки.</p>
+      <ol class="timeline">
+        <li>
+          <div class="t-time">06:30</div>
+          <div class="t-body"><span class="place">Подъём.</span>
+            <div class="note">Кофе в номере, лёгкий завтрак (банан / батончик), вода.</div></div>
+        </li>
+        <li>
+          <div class="t-time">07:00</div>
+          <div class="t-body"><span class="place">Такси из Сеогвипо до Yeongsil parking.</span>
+            <div class="note">40 мин, ~₩30–35 000 через Kakao T. Парковка на 1280 м.</div></div>
+        </li>
+        <li>
+          <div class="t-time">07:45</div>
+          <div class="t-body"><span class="place">Yeongsil Trail entrance.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.3613,126.5326" target="_blank">Maps</a>
+            <div class="note">Регистрации не нужно (только для Seongpanak/Gwaneumsa). Темп — спокойный, но без остановок более 5 минут.</div></div>
+        </li>
+        <li>
+          <div class="t-time">10:00</div>
+          <div class="t-body"><span class="place">Witse Oreum (1700 м).</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.3589,126.5419" target="_blank">Maps</a>
+            <div class="note">Высокогорное плато с азалиями и видом на главный кратер Halla. 20 мин на фото и перекус.</div></div>
+        </li>
+        <li>
+          <div class="t-time">10:30</div>
+          <div class="t-body"><span class="place">Начало спуска.</span>
+            <div class="note">~1.5–2 часа вниз.</div></div>
+        </li>
+        <li>
+          <div class="t-time">12:30</div>
+          <div class="t-body"><span class="place">У парковки, такси обратно.</span></div>
+        </li>
+        <li>
+          <div class="t-time">13:30</div>
+          <div class="t-body"><span class="place">В отеле.</span>
+            <div class="note">Душ, обед в номер или быстро в Olle Maeil, час восстановления.</div></div>
+        </li>
+      </ol>
+      <div class="work-block">
+        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
+      </div>
+      <div class="day-note">
+        <strong>Критично:</strong> хорошие кроссовки, ветровка (на 1700 м будет +8…+12), вода 1.5 л, перекус. <strong>Альтернатива при дожде:</strong> заменить на тур «Hallasan hiking» на GetYourGuide (6 ч с гидом) — но он жёстче по таймингу. Или перенести Sanbangsan со вторника.
+      </div>
+    </article>
+
+    <!-- ===== DAY 4 - SATURDAY EAST ===== -->
+    <article class="day" id="day-4" data-date="2026-05-16">
+      <header class="day-header">
+        <span class="day-date">16.05</span>
+        <span class="day-dow">суббота</span>
+        <span class="day-tag tag-free">восток · рассвет</span>
+      </header>
+      <h3 class="day-title">Sunrise Peak · Udo · Seopjikoji</h3>
+      <p class="day-subtitle">Приватный таксист-гид на весь день, забор в 03:50. <strong>Главное визуальное событие поездки</strong> — рассвет на вулканическом конусе UNESCO.</p>
+      <ol class="timeline">
+        <li>
+          <div class="t-time">03:30</div>
+          <div class="t-body"><span class="place">Подъём.</span></div>
+        </li>
+        <li>
+          <div class="t-time">03:50</div>
+          <div class="t-body"><span class="place">Забор из отеля таксистом.</span>
+            <div class="note">~1 ч 15 мин до Seongsan.</div></div>
+        </li>
+        <li>
+          <div class="t-time">05:00</div>
+          <div class="t-body"><span class="place">Seongsan Ilchulbong · парковка.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.4591,126.9396" target="_blank">Maps</a>
+            <div class="note">Билет ₩5 000. Подъём 30 мин по ступеням.</div></div>
+        </li>
+        <li>
+          <div class="t-time">05:18</div>
+          <div class="t-body"><span class="place">Рассвет.</span>
+            <div class="note">На вершине вулканического конуса, лицом к восточному океану.</div></div>
+        </li>
+        <li>
+          <div class="t-time">06:30</div>
+          <div class="t-body"><span class="place">Спуск, кофе у подножия.</span></div>
+        </li>
+        <li>
+          <div class="t-time">07:30</div>
+          <div class="t-body"><span class="place">Паром на остров Udo.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.5066,126.9534" target="_blank">Maps</a>
+            <div class="note">15 мин. На острове — hop-on/hop-off автобус (билет на день).</div></div>
+        </li>
+        <li>
+          <div class="t-time">08:00</div>
+          <div class="t-body"><span class="place">Sanho Beach → Geommeolle Beach → Udo Peak.</span>
+            <div class="note">Коралловый пляж → чёрный песок → виды.</div></div>
+        </li>
+        <li>
+          <div class="t-time">11:30</div>
+          <div class="t-body"><span class="place">Обед на Udo.</span>
+            <div class="note"><strong>Abalone bibimbap</strong> или <strong>abalone porridge</strong>. Udo — столица абалоне.</div></div>
+        </li>
+        <li>
+          <div class="t-time">13:00</div>
+          <div class="t-body"><span class="place">Обратный паром, таксист забирает в Seongsan Port.</span></div>
+        </li>
+        <li>
+          <div class="t-time">13:30</div>
+          <div class="t-body"><span class="place">Seopjikoji.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.4257,126.9286" target="_blank">Maps</a>
+            <div class="note">Мыс с маяком и часовней Glass House (Tadao Ando). 1 час.</div></div>
+        </li>
+        <li>
+          <div class="t-time">15:00</div>
+          <div class="t-body"><span class="place">Hamdeok Beach.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.5436,126.6701" target="_blank">Maps</a>
+            <div class="note">Бирюзовая вода, кофе на берегу.</div></div>
+        </li>
+        <li>
+          <div class="t-time">16:00</div>
+          <div class="t-body"><span class="place">Saryeoni Forest (опционально).</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.4314,126.6519" target="_blank">Maps</a>
+            <div class="note">Кедровая тропа, 40 мин. Если устал — пропусти.</div></div>
+        </li>
+        <li>
+          <div class="t-time">18:00</div>
+          <div class="t-body"><span class="place">Возврат в Сеогвипо.</span></div>
+        </li>
+        <li>
+          <div class="t-time">19:00</div>
+          <div class="t-body"><span class="place">Ужин: galchi-gui (жареный cutlassfish целиком).</span>
+            <div class="note">Ресторан <strong>Geommun Galchi</strong> или <strong>Solmuni</strong> в Сеогвипо. Визитка чеджуской кухни.</div></div>
+        </li>
+      </ol>
+      <div class="day-note">
+        <strong>Букинг:</strong> GetYourGuide / KKDay → «Jeju Private Taxi Tour English-speaking driver». В комментариях: <em>«pickup 03:50 AM from hotel in Seogwipo for Seongsan sunrise»</em>. Бюджет ~₩400–500 000 за машину на день.
+      </div>
+    </article>
+
+    <!-- ===== DAY 5 - SUNDAY WEST ===== -->
+    <article class="day" id="day-5" data-date="2026-05-17">
+      <header class="day-header">
+        <span class="day-date">17.05</span>
+        <span class="day-dow">воскресенье</span>
+        <span class="day-tag tag-free">запад</span>
+      </header>
+      <h3 class="day-title">O'Sulloc · Aewol · Hyeopjae · закат Songaksan</h3>
+      <p class="day-subtitle">Приватный таксист или Fabio West Bus Tour (групповой, дешевле).</p>
+      <ol class="timeline">
+        <li>
+          <div class="t-time">08:30</div>
+          <div class="t-body"><span class="place">Забор из отеля.</span></div>
+        </li>
+        <li>
+          <div class="t-time">09:15</div>
+          <div class="t-body"><span class="place">O'Sulloc Tea Museum + Innisfree Jeju House.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.2876,126.2898" target="_blank">Maps</a>
+            <div class="note">Чайные поля, 30 мин прогулки + зелёный чай латте.</div></div>
+        </li>
+        <li>
+          <div class="t-time">11:00</div>
+          <div class="t-body"><span class="place">Camellia Hill (опция) или сразу Aewol.</span></div>
+        </li>
+        <li>
+          <div class="t-time">12:30</div>
+          <div class="t-body"><span class="place">Aewol Cafe Street.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.4602,126.3081" target="_blank">Maps</a>
+            <div class="note">Обед. Топ-кафе: <strong>Bonte Museum Café</strong> (архитектура Tadao Ando), <strong>Monsant</strong> (стеклянное здание), <strong>Ankara Park</strong>.</div></div>
+        </li>
+        <li>
+          <div class="t-time">14:30</div>
+          <div class="t-body"><span class="place">Hyeopjae + Geumneung Beach.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.394,126.24" target="_blank">Maps</a>
+            <div class="note">Самая бирюзовая вода острова. Конический остров Biyangdo на горизонте. 1 час прогулки с фото.</div></div>
+        </li>
+        <li>
+          <div class="t-time">16:00</div>
+          <div class="t-body"><span class="place">Hallim Park.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.388,126.2606" target="_blank">Maps</a>
+            <div class="note">Ботсад + лавовые пещеры Hyeopjae и Ssangyong (это не закрытый Manjanggul). 1.5 ч.</div></div>
+        </li>
+        <li>
+          <div class="t-time">18:30</div>
+          <div class="t-body"><span class="place">Закат — Songaksan.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.1991,126.295" target="_blank">Maps</a>
+            <div class="note">Вулканический конус на юго-западе, тропа 1 час. Закат ~19:25.</div></div>
+        </li>
+        <li>
+          <div class="t-time">20:30</div>
+          <div class="t-body"><span class="place">Возврат в Сеогвипо.</span></div>
+        </li>
+      </ol>
+      <div class="day-note">
+        <strong>Букинг:</strong> «Jeju West Bus Tour from Seogwipo City» на GetYourGuide (искать <em>Fabio</em>) — групповой, англоязычный гид, забор из Casaloma/центра. Или приватный таксист (дороже, ~₩400k).
+      </div>
+    </article>
+
+    <!-- ===== DAY 6 ===== -->
+    <article class="day" id="day-6" data-date="2026-05-18">
+      <header class="day-header">
+        <span class="day-date">18.05</span>
+        <span class="day-dow">понедельник</span>
+        <span class="day-tag tag-work">рабочий день</span>
+      </header>
+      <h3 class="day-title">Jusangjeolli Cliffs + Jungmun Beach</h3>
+      <p class="day-subtitle">Спокойное восстановление после weekend.</p>
+      <ol class="timeline">
+        <li>
+          <div class="t-time">09:30</div>
+          <div class="t-body"><span class="place">Kakao T до Jusangjeolli Cliffs.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.2375,126.4225" target="_blank">Maps</a>
+            <div class="note">15 мин, ~₩15 000. Шестигранные базальтовые столбы у океана. UNESCO Global Geopark.</div></div>
+        </li>
+        <li>
+          <div class="t-time">10:30</div>
+          <div class="t-body"><span class="place">Прогулка к Jungmun Beach.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.2444,126.4106" target="_blank">Maps</a>
+            <div class="note">30–40 мин по береговой тропе или такси.</div></div>
+        </li>
+        <li>
+          <div class="t-time">11:30</div>
+          <div class="t-body"><span class="place">Кофе на Jungmun Saekdal Beach.</span>
+            <div class="note">Серфинг-вью, кафе с террасами на скалах.</div></div>
+        </li>
+        <li>
+          <div class="t-time">13:30</div>
+          <div class="t-body"><span class="place">Такси обратно в Сеогвипо.</span>
+            <div class="note">~₩18 000.</div></div>
+        </li>
+        <li>
+          <div class="t-time">14:00</div>
+          <div class="t-body"><span class="place">В отеле.</span></div>
+        </li>
+      </ol>
+      <div class="work-block">
+        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
+      </div>
+    </article>
+
+    <!-- ===== DAY 7 ===== -->
+    <article class="day" id="day-7" data-date="2026-05-19">
+      <header class="day-header">
+        <span class="day-date">19.05</span>
+        <span class="day-dow">вторник</span>
+        <span class="day-tag tag-work">рабочий день</span>
+      </header>
+      <h3 class="day-title">Sanbangsan + Yongmeori Coast</h3>
+      <p class="day-subtitle">Последний полноценный day-out.</p>
+      <ol class="timeline">
+        <li>
+          <div class="t-time">09:00</div>
+          <div class="t-body"><span class="place">Kakao T до Sanbangsan.</span>
+            <div class="note">~₩30 000, 30 мин.</div></div>
+        </li>
+        <li>
+          <div class="t-time">09:30</div>
+          <div class="t-body"><span class="place">Sanbanggulsa Temple в гроте.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.2362,126.3137" target="_blank">Maps</a>
+            <div class="note">Подъём 300 ступеней, 20 мин. Виды на южное побережье.</div></div>
+        </li>
+        <li>
+          <div class="t-time">10:30</div>
+          <div class="t-body"><span class="place">Yongmeori Coast.</span>
+            <a class="map-btn" href="https://maps.google.com/?q=33.2317,126.3119" target="_blank">Maps</a>
+            <div class="note">Скальный мыс «голова дракона». Прогулка по береговой кромке между слоями вулканического туфа. 40 мин.</div></div>
+        </li>
+        <li>
+          <div class="t-time">11:30</div>
+          <div class="t-body"><span class="place">Обед у пляжа Hwasun.</span></div>
+        </li>
+        <li>
+          <div class="t-time">13:00</div>
+          <div class="t-body"><span class="place">Kakao T обратно.</span>
+            <div class="note">~₩30 000.</div></div>
+        </li>
+        <li>
+          <div class="t-time">14:00</div>
+          <div class="t-body"><span class="place">В отеле.</span></div>
+        </li>
+      </ol>
+      <div class="work-block">
+        <span><span class="lbl">Работа</span> <span class="val">16:00 – 01:00 KST</span></span>
+      </div>
+      <div class="day-note">
+        <strong>Если устал после Hallasan и weekend:</strong> замени на кафе для работы и Olle-маршрут 7 пешком из центра. Низкая нагрузка — тоже валидно.
+      </div>
+    </article>
+
+    <!-- ===== DAY 8 ===== -->
+    <article class="day" id="day-8" data-date="2026-05-20">
+      <header class="day-header">
+        <span class="day-date">20.05</span>
+        <span class="day-dow">среда</span>
+        <span class="day-tag tag-travel">вылет</span>
+      </header>
+      <h3 class="day-title">Вылет</h3>
+      <p class="day-subtitle">Время зависит от рейса.</p>
+      <ol class="timeline">
+        <li>
+          <div class="t-time">—</div>
+          <div class="t-body"><span class="place">Выезд за 2.5–3 часа до вылета.</span>
+            <div class="note">Bus 600 — 1.5 ч дорога + 1 ч запас + чек-ин в аэропорту.</div></div>
+        </li>
+        <li>
+          <div class="t-time">опц</div>
+          <div class="t-body"><span class="place">Последний завтрак на Olle Maeil + 30 мин у Cheonjiyeon</span>
+            <div class="note">Если рейс не раньше 13:00.</div></div>
+        </li>
+      </ol>
+    </article>
+
+  </section>
+
+  <hr class="divider">
+
+  <!-- ===================== STAY ===================== -->
+  <section id="stay">
+    <div class="section-head">
+      <h2><span class="num">02</span>Где жить</h2>
+      <p class="quiet">Только центр Сеогвипо. 5 мин пешком до Olle Maeil или Cheonjiyeon. Рабочий стол в номере обязателен.</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="info-card">
+        <span class="pill tier">премиум</span>
+        <span class="pill">₩200–350k/ночь</span>
+        <h3>Whistlelark / The Suites</h3>
+        <p><strong>Hotel Whistlelark</strong> — современный, рабочий стол, центр, чистый дизайн.</p>
+        <p><strong>The Suites Hotel Jeju Seogwipo</strong> — крупный, тихие номера с видом, бизнес-уровень.</p>
+      </div>
+      <div class="info-card">
+        <span class="pill tier">средний</span>
+        <span class="pill">₩100–200k/ночь</span>
+        <h3>Casaloma / JG Hill</h3>
+        <p><strong>Casaloma Hotel</strong> — точка забора Fabio, центральнее некуда. Простой, но рабочий.</p>
+        <p><strong>JG Hill Hotel</strong> — рядом с Olle Maeil, чистый, нормальный Wi-Fi.</p>
+      </div>
+    </div>
+    <div class="day-note">
+      <strong>Не подходит:</strong> Jungmun Resort area (Parnas, JW Marriott, Lotte) — это в 15 км западнее Сеогвипо, без машины ты заперт. <strong>Jeju Bom Museum Stay</strong> — красиво, но на холме, не центр.
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ===================== FOOD ===================== -->
+  <section id="food">
+    <div class="section-head">
+      <h2><span class="num">03</span>Что есть</h2>
+      <p class="quiet">Семь визитных блюд Чеджу. Без этих — поездка не считается.</p>
+    </div>
+    <div class="food-list">
+      <div class="food-item">
+        <div class="food-num">01</div>
+        <div>
+          <h4>Heuk dwaeji · черная свинина</h4>
+          <p>Жирная свинина островной породы, жарится на углях. Black Pork Street рядом с Olle Maeil — десяток ресторанов в ряд.</p>
+        </div>
+      </div>
+      <div class="food-item">
+        <div class="food-num">02</div>
+        <div>
+          <h4>Galchi-gui · жареный cutlassfish</h4>
+          <p>Метровая серебристая рыба целиком на гриле. Solmuni, Geommun Galchi в Сеогвипо.</p>
+        </div>
+      </div>
+      <div class="food-item">
+        <div class="food-num">03</div>
+        <div>
+          <h4>Galchi-jorim · тушёный cutlassfish</h4>
+          <p>В остром соусе с редькой, корейской капустой. На Olle Maeil в любой палатке с дымящимися кастрюлями.</p>
+        </div>
+      </div>
+      <div class="food-item">
+        <div class="food-num">04</div>
+        <div>
+          <h4>Jeonbok-juk · каша с абалоне</h4>
+          <p>Кремовая рисовая каша с морским ушком. Лучше всего — на острове Udo (в субботу), где абалоне локальные.</p>
+        </div>
+      </div>
+      <div class="food-item">
+        <div class="food-num">05</div>
+        <div>
+          <h4>Mom-guk · суп с водорослями и свининой</h4>
+          <p>Прозрачный суп с мом (бурые водоросли) и свининой. Местный, не туристический.</p>
+        </div>
+      </div>
+      <div class="food-item">
+        <div class="food-num">06</div>
+        <div>
+          <h4>Hoeddeok · сладкие пончики с орехами</h4>
+          <p>Уличная еда на Olle Maeil. Жареный пончик с начинкой из коричневого сахара и орехов. Один — ₩1500.</p>
+        </div>
+      </div>
+      <div class="food-item">
+        <div class="food-num">07</div>
+        <div>
+          <h4>Tangerine soft serve</h4>
+          <p>Мороженое из чеджуских мандаринов. Кафе O'Sulloc, Aewol-кафе.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ===================== LOGISTICS ===================== -->
+  <section id="logistics">
+    <div class="section-head">
+      <h2><span class="num">04</span>Логистика</h2>
+    </div>
+
+    <div class="grid-2">
+      <div class="info-card">
+        <h3>Связь</h3>
+        <ul>
+          <li><strong>eSIM</strong> — Airalo или Holafly, Korea 7 дней unlimited, ~$15–25. Активируй за 30 мин до посадки.</li>
+          <li>Альтернатива — SIM в аэропорту (KT/SKT booths) у выхода.</li>
+          <li>WiFi в кафе и отелях — везде есть.</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Транспорт</h3>
+        <ul>
+          <li><strong>Bus 600</strong> — аэропорт ↔ Сеогвипо. Каждые 15 мин, ~₩6 500.</li>
+          <li><strong>Kakao T</strong> — единственный массовый такси-сервис. Привяжи карту заранее.</li>
+          <li><strong>T-money card</strong> — купи в 7-Eleven/CU в аэропорту (₩4 000 карта + пополнение). Все автобусы.</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Деньги</h3>
+        <ul>
+          <li>Visa/Mastercard работают в 95% мест.</li>
+          <li>Apple Pay / Samsung Pay поддерживаются.</li>
+          <li>Сними <strong>₩100 000</strong> в Global ATM в аэропорту (CU/GS25) на рынок и мелочи.</li>
+          <li>Курс: ~₩10 000 ≈ $7.</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Погода 13–20 мая</h3>
+        <ul>
+          <li>Дневная +19/+22°C, ночная +13/+15°C.</li>
+          <li>Дождь возможен 1–2 дня в окне. Муссон ещё не начался.</li>
+          <li>На Hallasan (1700 м) — +8/+12°C, ветер.</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Приложения</h3>
+        <ul>
+          <li><strong>Naver Map</strong> — основная карта (Google Maps в Корее куцый).</li>
+          <li><strong>Kakao T</strong> — такси.</li>
+          <li><strong>Papago</strong> — переводчик (лучше Google для KR).</li>
+          <li><strong>KakaoTalk</strong> — мессенджер для связи с гидами.</li>
+          <li><strong>Klook / GetYourGuide</strong> — туры.</li>
+        </ul>
+      </div>
+
+      <div class="info-card">
+        <h3>Что взять</h3>
+        <ul>
+          <li>Лёгкий софтшелл/ветровка (Hallasan, Sunrise Peak).</li>
+          <li>Кроссовки с протектором.</li>
+          <li>Лёгкий дождевик/зонт.</li>
+          <li>Power-bank.</li>
+          <li>Адаптер Type C/F (как в Европе).</li>
+          <li>Купальник (фото на Hyeopjae).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 40px; color: var(--volcano);">Ключевые ссылки</h3>
+    <div class="links-grid">
+      <a class="link-card" href="https://www.getyourguide.com/jeju-province-l32347/" target="_blank">
+        <span class="title">GetYourGuide · Jeju</span>
+        <span class="sub">Туры с забором из Сеогвипо</span>
+      </a>
+      <a class="link-card" href="https://www.klook.com/en-US/city/164-jeju-things-to-do/" target="_blank">
+        <span class="title">Klook · Jeju</span>
+        <span class="sub">Альтернативные туры</span>
+      </a>
+      <a class="link-card" href="https://www.koreatraveleasy.com/" target="_blank">
+        <span class="title">KoreaTravelEasy</span>
+        <span class="sub">Приватные туры с гидом</span>
+      </a>
+      <a class="link-card" href="https://www.airalo.com/korea-esim" target="_blank">
+        <span class="title">Airalo · eSIM</span>
+        <span class="sub">Korea unlimited 7 дней</span>
+      </a>
+      <a class="link-card" href="https://map.naver.com/" target="_blank">
+        <span class="title">Naver Map</span>
+        <span class="sub">Основная карта Кореи</span>
+      </a>
+      <a class="link-card" href="https://www.booking.com/searchresults.html?ss=Seogwipo" target="_blank">
+        <span class="title">Booking · Сеогвипо</span>
+        <span class="sub">Whistlelark / Casaloma / Suites</span>
+      </a>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- ===================== CHECKLIST ===================== -->
+  <section id="checklist">
+    <div class="section-head">
+      <h2><span class="num">05</span>Сделать до вылета</h2>
+      <p class="quiet">Чекбоксы сохраняются локально. Можно открывать с любого устройства, но прогресс на каждом свой.</p>
+    </div>
+    <div class="check-progress">
+      <span>Прогресс</span>
+      <div class="bar"><div class="bar-fill" id="bar-fill"></div></div>
+      <span class="count" id="check-count">0/10</span>
+    </div>
+    <ul class="checklist" id="checklist">
+      <li><label>
+        <input type="checkbox" data-key="ck1">
+        <span>Забронировать отель в центре Сеогвипо (Whistlelark / Casaloma) на 13–20 мая.
+        <span class="meta">Booking / Agoda / Klook</span></span>
+      </label></li>
+      <li><label>
+        <input type="checkbox" data-key="ck2">
+        <span>Купить eSIM Korea (Airalo, 7 дней unlimited, ~$20).
+        <span class="meta">Установить, но активировать только при посадке в аэропорту Чеджу</span></span>
+      </label></li>
+      <li><label>
+        <input type="checkbox" data-key="ck3">
+        <span>Установить приложения: Naver Map, Kakao T, Papago, KakaoTalk, Klook.
+        <span class="meta">Kakao T — зарегистрироваться через email, привязать карту</span></span>
+      </label></li>
+      <li><label>
+        <input type="checkbox" data-key="ck4">
+        <span>Забронировать <strong>16.05 (суббота)</strong> — приватный таксист с забором 03:50 для рассвета на Seongsan.
+        <span class="meta">GetYourGuide → «Jeju Private Taxi Tour English-speaking driver» + комментарий о раннем заборе</span></span>
+      </label></li>
+      <li><label>
+        <input type="checkbox" data-key="ck5">
+        <span>Забронировать <strong>17.05 (воскресенье)</strong> — Fabio West Bus Tour или приватный таксист.
+        <span class="meta">GetYourGuide → «West of Jeju Island Bus Tour from Seogwipo City»</span></span>
+      </label></li>
+      <li><label>
+        <input type="checkbox" data-key="ck6">
+        <span>Скачать офлайн-карту Чеджу в Naver Map.</span>
+      </label></li>
+      <li><label>
+        <input type="checkbox" data-key="ck7">
+        <span>Положить в чемодан: ветровка, кроссовки, дождевик, повербанк, адаптер.</span>
+      </label></li>
+      <li><label>
+        <input type="checkbox" data-key="ck8">
+        <span>Поменять €100 в обменнике или подготовиться снять ₩100 000 в первом ATM Чеджу.</span>
+      </label></li>
+      <li><label>
+        <input type="checkbox" data-key="ck9">
+        <span>Проверить рабочий ноутбук — зарядка, переходник, рабочий стол в номере отеля.</span>
+      </label></li>
+      <li><label>
+        <input type="checkbox" data-key="ck10">
+        <span>Сохранить эту страницу в закладки на телефоне для оффлайн-доступа.</span>
+      </label></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="display-italic">Удачной поездки.</p>
+    <p>Личный гайд · Чеджу · 13–20 мая 2026</p>
+  </footer>
+
+</main>
+
+<script>
+  // ==== Live clock ====
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function fmtDate(d) {
+    const months = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+    return `${d.getDate()} ${months[d.getMonth()]}, ${['вс','пн','вт','ср','чт','пт','сб'][d.getDay()]}`;
+  }
+  function updateClocks() {
+    const now = new Date();
+    // MSK = UTC+3, KST = UTC+9
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    const msk = new Date(utc + 3 * 3600000);
+    const kst = new Date(utc + 9 * 3600000);
+    document.querySelector('[data-tz="msk"]').textContent = `${pad(msk.getHours())}:${pad(msk.getMinutes())}`;
+    document.querySelector('[data-tz="kst"]').textContent = `${pad(kst.getHours())}:${pad(kst.getMinutes())}`;
+    document.querySelector('[data-tz-date="msk"]').textContent = fmtDate(msk);
+    document.querySelector('[data-tz-date="kst"]').textContent = fmtDate(kst);
+  }
+  updateClocks();
+  setInterval(updateClocks, 30000);
+
+  // ==== Highlight today ====
+  function highlightToday() {
+    const now = new Date();
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    const kst = new Date(utc + 9 * 3600000);
+    const todayStr = `${kst.getFullYear()}-${pad(kst.getMonth()+1)}-${pad(kst.getDate())}`;
+    document.querySelectorAll('.day').forEach(d => {
+      if (d.dataset.date === todayStr) {
+        d.classList.add('today');
+        // scroll to it after a beat
+        setTimeout(() => d.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+      }
+    });
+  }
+  highlightToday();
+
+  // ==== Checklist + localStorage ====
+  const STORAGE_KEY = 'jeju-trip-checks-v1';
+  function loadChecks() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch(e) { return {}; }
+  }
+  function saveChecks(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+  function updateProgress() {
+    const boxes = document.querySelectorAll('.checklist input[type="checkbox"]');
+    const total = boxes.length;
+    const done = Array.from(boxes).filter(b => b.checked).length;
+    document.getElementById('check-count').textContent = `${done}/${total}`;
+    document.getElementById('bar-fill').style.width = `${(done/total)*100}%`;
+  }
+  const state = loadChecks();
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach(box => {
+    const key = box.dataset.key;
+    if (state[key]) box.checked = true;
+    box.addEventListener('change', () => {
+      state[key] = box.checked;
+      saveChecks(state);
+      updateProgress();
+    });
+  });
+  updateProgress();
+</script>
+
+</body>
+</html>
