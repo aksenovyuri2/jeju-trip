@@ -259,11 +259,13 @@ section { padding: 56px 0; }
   }
   .day-tile { grid-column: span 3; }
   .day-tile.featured { grid-column: span 6; }
+  .day-tile.featured-half { grid-column: span 3; }
 }
 @media (min-width: 1024px) {
   .days-grid { grid-template-columns: repeat(6, 1fr); }
   .day-tile { grid-column: span 2; }
-  .day-tile.featured { grid-column: span 3; }
+  .day-tile.featured { grid-column: span 6; }
+  .day-tile.featured-half { grid-column: span 3; }
 }
 
 .day-tile {
@@ -303,24 +305,28 @@ section { padding: 56px 0; }
 
 .day-tile .tile-num {
   position: absolute;
-  top: 14px; right: 18px;
+  top: 10px; right: 14px;
   font-family: 'Fraunces', serif;
   font-style: italic;
   font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
   font-weight: 300;
-  font-size: clamp(4.5rem, 12vw, 8rem);
+  /* Capped at 5rem so the number doesn't overflow into tile content */
+  font-size: clamp(3.2rem, 8vw, 5rem);
   line-height: 0.85;
   color: var(--rule-soft);
   transition: color 0.3s, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: -0.04em;
   pointer-events: none;
   user-select: none;
+  overflow: hidden;
+  max-width: 4ch;
 }
 .day-tile:hover .tile-num {
   color: var(--tangerine-soft);
   transform: scale(1.04) rotate(-3deg);
 }
-.day-tile.featured .tile-num { font-size: clamp(6rem, 14vw, 10rem); }
+.day-tile.featured .tile-num,
+.day-tile.featured-half .tile-num { font-size: clamp(3.5rem, 9vw, 6rem); }
 .day-tile.today .tile-num { color: var(--tangerine); }
 
 .day-tile .tile-eyebrow {
@@ -364,7 +370,8 @@ section { padding: 56px 0; }
   margin-bottom: 6px;
   max-width: 78%;
 }
-.day-tile.featured .tile-title { font-size: 1.5rem; max-width: 70%; }
+.day-tile.featured .tile-title,
+.day-tile.featured-half .tile-title { font-size: 1.5rem; max-width: 70%; }
 .day-tile .tile-sub {
   position: relative; z-index: 1;
   font-size: 0.85rem; color: var(--ink-soft);
@@ -388,15 +395,20 @@ section { padding: 56px 0; }
   font-weight: 600;
 }
 .day-tile .tile-arrow {
-  font-family: 'Fraunces', serif;
-  font-size: 1.3rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   color: var(--volcano);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s;
 }
-.day-tile:hover .tile-arrow { transform: translateX(6px); }
+.day-tile:hover .tile-arrow { transform: translateX(5px); color: var(--tangerine); }
 .day-tile.today {
-  background: linear-gradient(180deg, #FBF7EE 0%, #FFF5E6 100%);
+  background: linear-gradient(160deg, #FFFAF2 0%, #FFF0D6 100%);
   border-color: var(--tangerine);
+  border-width: 2px;
+  box-shadow: 0 0 0 4px rgba(217, 118, 64, 0.10), var(--shadow-lg);
 }
 .day-tile.special {
   background: linear-gradient(180deg, #FBF7EE 0%, #F5EBD7 100%);
@@ -1196,7 +1208,8 @@ footer .display-italic { font-size: 1.4rem; color: var(--volcano); margin-bottom
   mix-blend-mode: normal;
   font-size: clamp(3.5rem, 9vw, 6rem);
 }
-.day-tile.featured.has-thumb .tile-num { font-size: clamp(4.5rem, 11vw, 7.5rem); }
+.day-tile.featured.has-thumb .tile-num,
+.day-tile.featured-half.has-thumb .tile-num { font-size: clamp(4.5rem, 11vw, 7.5rem); }
 .day-tile.has-thumb:hover .tile-num { color: var(--bg-card); }
 
 /* Restaurant card — top image strip */
@@ -1483,14 +1496,19 @@ footer .display-italic { font-size: 1.4rem; color: var(--volcano); margin-bottom
   transform: scale(1.03);
   filter: saturate(1.05);
 }
+.atlas-spread .atlas-img.thumb-missing {
+  background: linear-gradient(135deg, var(--bg-card-alt) 0%, var(--rule-soft) 60%, var(--bg-card) 100%);
+}
 .atlas-spread .atlas-img.thumb-missing::after {
-  content: "image";
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
-  font-size: 1.5rem;
-  color: var(--ink-faint);
-  position: absolute;
+  content: "";
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 18px,
+    rgba(26, 31, 38, 0.04) 18px,
+    rgba(26, 31, 38, 0.04) 19px
+  );
 }
 @media (min-width: 900px) {
   .atlas-spread .atlas-img { aspect-ratio: 3 / 4; }
