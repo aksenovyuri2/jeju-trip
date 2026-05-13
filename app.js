@@ -261,6 +261,15 @@ function wikiSaveCache(c) {
   try { sessionStorage.setItem(WIKI_CACHE_KEY, JSON.stringify(c)); } catch {}
 }
 
+// Convert a Wikimedia /thumb/ URL to the direct full-size file URL.
+// /thumb/A/AB/File.jpg/1000px-File.jpg → /A/AB/File.jpg
+// Direct URLs load reliably without redirect chains in all environments.
+function thumbToDirect(url) {
+  if (!url) return url;
+  const m = url.match(/^(https:\/\/upload\.wikimedia\.org\/wikipedia\/[^/]+)\/thumb\/([0-9a-f]\/[0-9a-f]{2}\/.+?)\/\d+px-[^/]+$/);
+  return m ? `${m[1]}/${m[2]}` : url;
+}
+
 async function fetchWikiThumb(title, lang) {
   lang = lang || 'en';
   const cache = wikiLoadCache();
@@ -275,11 +284,9 @@ async function fetchWikiThumb(title, lang) {
     }
     const data = await r.json();
     let src = (data.originalimage && data.originalimage.source) || (data.thumbnail && data.thumbnail.source) || null;
-    // Upscale Wikipedia thumb URL to a larger width if it follows the standard
-    // /thumb/.../NNNpx-Filename.jpg format. Try 1000px for crisp visuals.
-    if (src && /\/thumb\//.test(src)) {
-      src = src.replace(/\/(\d+)px-([^/]+)$/, '/1000px-$2');
-    }
+    // Convert /thumb/ redirect URL to a direct file URL for reliable loading
+    // in all environments (browsers, testing tools, headless contexts).
+    if (src) src = thumbToDirect(src);
     cache[key] = src;
     wikiSaveCache(cache);
     return src;
@@ -290,11 +297,12 @@ async function fetchWikiThumb(title, lang) {
 
 async function fetchWikiThumbWithFallback(title) {
   // Hardcoded overrides for articles that return logos or low-quality images.
+  // All URLs are direct Wikimedia Commons file URLs (no /thumb/ redirects).
   const IMAGE_OVERRIDE = {
-    // O'Sulloc Wikipedia article returns a corporate logo; use tea-field photo instead.
-    "O'Sulloc_Tea_Museum": 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Osulloc_tea_fields.jpg/1200px-Osulloc_tea_fields.jpg',
-    // Airport article image is pale/desaturated; use a richer exterior shot.
-    'Jeju_International_Airport': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Jeju_Airport_2015.jpg/1200px-Jeju_Airport_2015.jpg',
+    // O'Sulloc Wikipedia article returns a corporate interior shot; show west-Jeju coastal scenery instead.
+    "O'Sulloc_Tea_Museum": 'https://upload.wikimedia.org/wikipedia/commons/c/ce/Jeju_Olle_Route_14_%282%29.jpg',
+    // Airport article image varies; use a confirmed 2024 exterior photo.
+    'Jeju_International_Airport': 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Jejuairport2024.jpg',
   };
   if (IMAGE_OVERRIDE[title]) return IMAGE_OVERRIDE[title];
 
