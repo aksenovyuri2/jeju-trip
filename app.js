@@ -289,6 +289,15 @@ async function fetchWikiThumb(title, lang) {
 }
 
 async function fetchWikiThumbWithFallback(title) {
+  // Hardcoded overrides for articles that return logos or low-quality images.
+  const IMAGE_OVERRIDE = {
+    // O'Sulloc Wikipedia article returns a corporate logo; use tea-field photo instead.
+    "O'Sulloc_Tea_Museum": 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Osulloc_tea_fields.jpg/1200px-Osulloc_tea_fields.jpg',
+    // Airport article image is pale/desaturated; use a richer exterior shot.
+    'Jeju_International_Airport': 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Jeju_Airport_2015.jpg/1200px-Jeju_Airport_2015.jpg',
+  };
+  if (IMAGE_OVERRIDE[title]) return IMAGE_OVERRIDE[title];
+
   // Try English first, fall back to Korean Wikipedia.
   const KR_FALLBACK = {
     'Saeyeon_Bridge': '새연교',
