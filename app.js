@@ -209,6 +209,198 @@ setInterval(updateClocks, 30000);
   });
 })();
 
+// ============= Wikipedia image hydration =============
+// Fetches the lead image of a Wikipedia article and inserts it as an <img>
+// inside any element matching the article's selector. Cached in sessionStorage
+// to avoid re-hitting the API on navigation between pages.
+//
+// Usage in HTML:
+//   <div class="thumb-slot" data-wiki="Seongsan_Ilchulbong"></div>
+//   <a class="day-tile" data-wiki="Hallasan">...</a>
+//   <article class="rest-card" data-wiki="Korean_black_pig">...</article>
+//
+// For elements with class .day-tile / .rest-card the image is set as a
+// background on a generated .tile-thumb / .rest-thumb child. For .thumb-slot
+// the image is inserted as an <img> child.
+//
+// Coord → wiki lookup: timeline stops have only lat/lng in their map links.
+// We map known coordinates to Wikipedia articles and hydrate thumbnails
+// inside the .t-body of each matching timeline entry.
+
+const COORD_TO_WIKI = {
+  '33.5113,126.4929': 'Jeju_International_Airport',
+  '33.247,126.5621':  'Seogwipo',
+  '33.2469,126.5589': 'Cheonjiyeon_Falls',
+  '33.2424,126.5587': 'Saeyeon_Bridge',
+  '33.241,126.5599':  'Saeseom',
+  '33.2497,126.5650': 'Black_pig',
+  '33.3613,126.5326': 'Hallasan_National_Park',
+  '33.3589,126.5419': 'Hallasan',
+  '33.4591,126.9396': 'Seongsan_Ilchulbong',
+  '33.5066,126.9534': 'Udo,_Jeju',
+  '33.4257,126.9286': 'Seopjikoji',
+  '33.5436,126.6701': 'Hamdeok_Beach',
+  '33.4314,126.6519': 'Saryeoni_Forest',
+  '33.2876,126.2898': "O'Sulloc_Tea_Museum",
+  '33.4602,126.3081': 'Aewol-eup',
+  '33.394,126.24':    'Hyeopjae_Beach',
+  '33.388,126.2606':  'Hallim_Park',
+  '33.1991,126.295':  'Songaksan',
+  '33.2375,126.4225': 'Jusangjeolli_Cliff',
+  '33.2444,126.4106': 'Jungmun_Beach',
+  '33.2362,126.3137': 'Sanbangsan',
+  '33.2317,126.3119': 'Yongmeori_Coast',
+};
+
+const WIKI_CACHE_KEY = 'jeju-trip-wiki-thumbs-v1';
+function wikiLoadCache() {
+  try { return JSON.parse(sessionStorage.getItem(WIKI_CACHE_KEY) || '{}'); }
+  catch { return {}; }
+}
+function wikiSaveCache(c) {
+  try { sessionStorage.setItem(WIKI_CACHE_KEY, JSON.stringify(c)); } catch {}
+}
+
+async function fetchWikiThumb(title, lang) {
+  lang = lang || 'en';
+  const cache = wikiLoadCache();
+  const key = lang + ':' + title;
+  if (key in cache) return cache[key];
+  try {
+    const url = `https://${lang}.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+    const r = await fetch(url, { headers: { 'Accept': 'application/json' } });
+    if (!r.ok) {
+      cache[key] = null; wikiSaveCache(cache);
+      return null;
+    }
+    const data = await r.json();
+    let src = (data.originalimage && data.originalimage.source) || (data.thumbnail && data.thumbnail.source) || null;
+    // Upscale Wikipedia thumb URL to a larger width if it follows the standard
+    // /thumb/.../NNNpx-Filename.jpg format. Try 1000px for crisp visuals.
+    if (src && /\/thumb\//.test(src)) {
+      src = src.replace(/\/(\d+)px-([^/]+)$/, '/1000px-$2');
+    }
+    cache[key] = src;
+    wikiSaveCache(cache);
+    return src;
+  } catch {
+    return null;
+  }
+}
+
+async function fetchWikiThumbWithFallback(title) {
+  // Try English first, fall back to Korean Wikipedia.
+  const KR_FALLBACK = {
+    'Saeyeon_Bridge': '새연교',
+    'Saeseom': '새섬',
+    'Saryeoni_Forest': '사려니숲길',
+    'Aewol-eup': '애월읍',
+    'Hyeopjae_Beach': '협재해수욕장',
+    'Songaksan': '송악산',
+    'Yongmeori_Coast': '용머리해안',
+    'Jungmun_Beach': '중문해수욕장',
+    'Hamdeok_Beach': '함덕해수욕장',
+    'Hallim_Park': '한림공원',
+    "O'Sulloc_Tea_Museum": '오설록',
+    'Black_pig': '흑돼지',
+    'Jusangjeolli_Cliff': '주상절리',
+    'Udo,_Jeju': '우도면',
+    'Cheonjiyeon_Falls': '천지연폭포',
+    'Seopjikoji': '섭지코지',
+    'Hotteok': '호떡',
+    'Hallasan_National_Park': '한라산',
+    'Jeju_International_Airport': '제주국제공항',
+    'Seogwipo': '서귀포시',
+    'Jeju_City': '제주시',
+    'Sanbangsan': '산방산',
+  };
+  let src = await fetchWikiThumb(title, 'en');
+  if (src) return src;
+  const krTitle = KR_FALLBACK[title];
+  if (krTitle) {
+    src = await fetchWikiThumb(krTitle, 'ko');
+    if (src) return src;
+  }
+  return null;
+}
+
+(function hydrateWikipediaImages() {
+  // Day tiles: prepend a tile-thumb div with background image
+  document.querySelectorAll('.day-tile[data-wiki]').forEach(async (tile) => {
+    const title = tile.dataset.wiki;
+    if (!title) return;
+    const src = await fetchWikiThumbWithFallback(title);
+    if (!src) return;
+    const thumb = document.createElement('div');
+    thumb.className = 'tile-thumb';
+    thumb.style.backgroundImage = `url("${src}")`;
+    tile.insertBefore(thumb, tile.firstChild);
+    tile.classList.add('has-thumb');
+  });
+
+  // Restaurant cards: prepend a rest-thumb div with background image
+  document.querySelectorAll('.rest-card[data-wiki]').forEach(async (card) => {
+    const title = card.dataset.wiki;
+    if (!title) return;
+    const src = await fetchWikiThumbWithFallback(title);
+    if (!src) return;
+    const thumb = document.createElement('div');
+    thumb.className = 'rest-thumb';
+    thumb.style.backgroundImage = `url("${src}")`;
+    card.insertBefore(thumb, card.firstChild);
+    card.classList.add('has-thumb');
+  });
+
+  // Atlas spreads: inline image element
+  document.querySelectorAll('[data-wiki-thumb]').forEach(async (slot) => {
+    const title = slot.dataset.wikiThumb;
+    if (!title) return;
+    const src = await fetchWikiThumbWithFallback(title);
+    if (!src) {
+      slot.classList.add('thumb-missing');
+      return;
+    }
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = title.replace(/_/g, ' ');
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    slot.appendChild(img);
+    slot.classList.add('thumb-loaded');
+  });
+
+  // Day timeline: for each .map-btn with known coords, insert a thumb
+  // into the parent .t-body so each stop gets an inline image accent.
+  const COORD_RE = /[?&](?:q|destination)=([-\d.]+),([-\d.]+)/;
+  document.querySelectorAll('.timeline > li').forEach(async (li) => {
+    const btn = li.querySelector('.map-btn');
+    if (!btn) return;
+    const m = btn.getAttribute('href').match(COORD_RE);
+    if (!m) return;
+    const key = `${m[1]},${m[2]}`;
+    const title = COORD_TO_WIKI[key];
+    if (!title) return;
+    const src = await fetchWikiThumbWithFallback(title);
+    if (!src) return;
+    const body = li.querySelector('.t-body');
+    if (!body || body.querySelector('.t-thumb')) return;
+    const thumb = document.createElement('a');
+    thumb.className = 't-thumb';
+    thumb.href = btn.getAttribute('href');
+    thumb.target = '_blank';
+    thumb.rel = 'noopener';
+    thumb.setAttribute('aria-label', `Открыть ${title.replace(/_/g, ' ')} в Maps`);
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = title.replace(/_/g, ' ');
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    thumb.appendChild(img);
+    body.appendChild(thumb);
+    li.classList.add('has-thumb');
+  });
+})();
+
 // ============= Korean phrase: copy to clipboard =============
 (function phraseCopy() {
   const buttons = document.querySelectorAll('.phrase button.copy');
